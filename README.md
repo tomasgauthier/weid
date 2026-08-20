@@ -3,6 +3,10 @@
 **Una convención para marcar el aporte humano dentro de un texto escrito con IA.**
 Tres clases de CSS, un atributo, ningún JavaScript.
 
+![Un hombre mirando un cartel de una banda con tres fechas sold out en una calle de Santiago](cover.jpeg)
+
+<sub>Portada del [ensayo que sirve de caso real](https://gauthier.cl/blog/la-estandarizacion-de-la-prosperidad) — el primer texto publicado con esta convención. Imagen generada con Nano Banana Pro, que es justamente lo que un caption debería decir.</sub>
+
 > ***weid-*** — raíz indoeuropea que significa *ver*. De ella vienen **ver**,
 > **vidente**, **idea** y **evidencia**: literalmente, *lo que se ve con
 > claridad*. Es la familia entera de este proyecto en una sola palabra: hacer

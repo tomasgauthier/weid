@@ -49,14 +49,21 @@ Pega esto al empezar a escribir, con cualquier modelo.
 >
 > y agrega la leyenda de `example.html`, adaptada al texto.
 >
-> **Tres reglas duras:**
+> **Cinco reglas:**
 >
-> 1. No marques de más. Si dudas de si una frase es mía, no la marques: el
->    default es que sea tuya, y errar hacia allá es honesto. Errar hacia el
->    otro lado es atribuirme algo que no dije.
-> 2. No inventes vivencias ni las marques como mías.
-> 3. Marca frases completas, no palabras sueltas. Esto se lee como subrayado
->    de lector, no como keyword.
+> 1. Ante la duda, no marques. El default es que el texto sea tuyo, y errar
+>    hacia allá es honesto. Errar hacia el otro lado es atribuirme algo que no
+>    dije, que es la única forma de que esto haga daño.
+> 2. **Aprobar no es autoría.** Si tú propusiste algo y yo dije "sí, buena,
+>    ponlo", eso es tuyo, no mío. No lo marques.
+> 3. **La idea se marca una vez**, en la formulación más fuerte, no en cada eco
+>    que aparezca después. Si subrayas todo, no subrayaste nada: entre cinco y
+>    quince marcas en un ensayo largo.
+> 4. Para tu nota, el test es contrafactual: **si yo no te hubiera tenido a ti,
+>    ¿este argumento, este dato o este giro estarían en el texto?** Si la
+>    respuesta es no, va nota. Haber redactado bien el párrafo no cuenta: eso ya
+>    está declarado.
+> 5. No inventes vivencias, y marca frases completas, no palabras sueltas.
 
 ---
 

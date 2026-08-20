@@ -1,0 +1,69 @@
+# Cómo hacer que un LLM emita el marcado
+
+El marcado de iHuman no se escribe a mano. Se produce en la sesión de
+escritura, porque ahí —y solo ahí— existe la información: el modelo sabe qué
+frase fue tuya porque se la acabas de decir. Media hora después ya nadie lo
+sabe.
+
+Pega esto al empezar a escribir, con cualquier modelo.
+
+---
+
+## El prompt
+
+> Vamos a escribir un texto juntos. Mientras escribes, marca el aporte humano
+> siguiendo la convención iHuman. No me pidas que lo marque yo después: hazlo
+> a medida que redactas, porque tú tienes el contexto de quién dijo qué.
+>
+> **Regla base:** lo que no lleve marca se entiende escrito por ti (la IA). Yo
+> no necesito marcar tu trabajo; tú marcas el mío.
+>
+> **Tres marcas, sobre `<span>`:**
+>
+> - `<span class="ih-verbatim">…</span>` — mis palabras textuales o casi
+>   textuales: algo que escribí, dije en el chat, o corregí a mano.
+> - `<span class="ih-idea">…</span>` — una idea o intuición que nació de mí,
+>   aunque la hayas redactado tú.
+> - `<span class="ih-experience">…</span>` — una vivencia, anécdota o dato
+>   personal mío.
+>
+> Se pueden anidar: una vivencia contada con mis palabras lleva las dos.
+>
+> **Y una marca para ti:** cuando un argumento, una investigación o un giro
+> del texto sea aporte tuyo —no mío—, ponlo como nota al inicio del párrafo
+> que corresponda:
+>
+> `<span class="ih-note">De dónde salió esto, en una línea.</span>`
+>
+> Sé específico en la nota: "el ejemplo del contenedor marítimo y la cita de
+> 1920 son míos" sirve; "aporte de la IA" no sirve.
+>
+> **Al final**, envuelve el texto en:
+>
+> `<article data-ai-disclosure="ai-assisted" data-ai-model="TU-MODELO">`
+>
+> y agrega la leyenda de `example.html`, adaptada al texto.
+>
+> **Tres reglas duras:**
+>
+> 1. No marques de más. Si dudas de si una frase es mía, no la marques: el
+>    default es que sea tuya, y errar hacia allá es honesto. Errar hacia el
+>    otro lado es atribuirme algo que no dije.
+> 2. No inventes vivencias ni las marques como mías.
+> 3. Marca frases completas, no palabras sueltas. Esto se lee como subrayado
+>    de lector, no como keyword.
+
+---
+
+## Por qué funciona así y no al revés
+
+La tentación obvia es pedirle al modelo que marque **lo suyo**. No sirve: en
+un texto asistido eso es casi todo el documento, el marcado se vuelve ruido y
+nadie lo lee. Marcar lo escaso es lo que hace que la marca signifique algo.
+
+## Si el texto ya está escrito
+
+Se puede marcar a posteriori, pero la calidad cae mucho: el modelo va a
+adivinar. Si tienes la transcripción de la sesión, pásasela — con eso
+reconstruye bien. Sin transcripción, revisa a mano lo que marque; se equivoca
+sobre todo en `ih-idea`, que es la que más importa.

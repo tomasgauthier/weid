@@ -69,6 +69,22 @@ La nota es texto normal dentro del párrafo. Con CSS se va al margen; sin CSS
 sigue ahí. Un disclosure que se cae cuando no carga la hoja de estilos no es
 un disclosure.
 
+### ¿La voz de quién?
+
+No es lo mismo el modelo con su voz por defecto que el modelo corriendo una
+skill que construiste con tus propios textos: ahí la voz es tuya reconstruida,
+aunque las palabras sean suyas. Un atributo opcional lo dice:
+
+```html
+<article data-ai-disclosure="ai-assisted"
+         data-weid-voice="author"
+         data-weid-voice-source="tgdoppelganger">
+```
+
+`model` (el default, se omite) · `author` (tu voz, desde tus textos) ·
+`third-party` (la voz de un tercero — y ahí nombrarlo es obligatorio, porque
+imitar sin decirlo es justo lo que hay que declarar).
+
 Falta una sola cosa más, y es obligatoria: **la leyenda**. Sin ella las marcas
 son decoración. Está en `example.html`, lista para copiar.
 

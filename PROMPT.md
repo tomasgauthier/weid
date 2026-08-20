@@ -42,6 +42,11 @@ Pega esto al empezar a escribir, con cualquier modelo.
 >
 > `<article data-ai-disclosure="ai-assisted" data-ai-model="TU-MODELO">`
 >
+> Si estás escribiendo con una skill, persona o prompt hecho con mis textos,
+> agrega `data-weid-voice="author"` y `data-weid-voice-source="NOMBRE"`. Si
+> estás imitando la voz de un tercero, `data-weid-voice="third-party"` y
+> nómbralo: eso no es opcional.
+>
 > y agrega la leyenda de `example.html`, adaptada al texto.
 >
 > **Tres reglas duras:**

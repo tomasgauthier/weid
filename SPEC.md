@@ -67,7 +67,35 @@ SHOULD match both forms:
 [data-ai-disclosure], [ai-disclosure] { … }
 ```
 
-## 4. Sentence level: the human marks
+## 4. Whose voice is the AI writing in?
+
+A model writing in its own default register and a model running a persona the
+author built from their own published work are not the same act, and no
+existing standard can tell them apart. One optional attribute does:
+
+```html
+<article data-ai-disclosure="ai-assisted"
+         data-weid-voice="author"
+         data-weid-voice-source="tgdoppelganger">
+```
+
+| Value | Meaning |
+|---|---|
+| `model` | the model's own default voice. This is the default; omit the attribute |
+| `author` | the model writes in the author's voice, reconstructed from the author's own texts |
+| `third-party` | the model writes in someone else's voice |
+
+`data-weid-voice-source` names the artifact — a skill, a system prompt, a
+fine-tune, a style guide. It is optional for `model` and `author`, and
+**REQUIRED for `third-party`**: an unnamed imitation of a living writer is the
+case this attribute exists to expose.
+
+`author` is not a lesser claim than human writing, and not a greater one. It
+says something specific: the prose style descends from the human's corpus, so
+the voice is theirs even where the sentences are not. Readers can weigh that
+themselves — which is the entire point of disclosure.
+
+## 5. Sentence level: the human marks
 
 Three classes on `<span>`. Nothing else is required, and nothing else should be
 added without evidence that three is not enough.
@@ -92,7 +120,7 @@ WordPress's KSES sanitizer, by most email clients, and by several feed readers.
 `class` on a `<span>` survives every sanitizer in common use. This is the floor
 that makes the convention portable; do not raise it.
 
-## 5. The AI's side
+## 6. The AI's side
 
 The inverse claim — *this argument came from the model* — is carried by a note
 placed inside the paragraph it annotates:
@@ -109,7 +137,7 @@ is not disclosure.
 
 Renderers MAY move notes into the margin where the layout allows.
 
-## 6. The legend is mandatory
+## 7. The legend is mandatory
 
 A document using weid MUST carry a visible legend that states the base rule
 and what each mark means. Marks without a legend are decoration.
@@ -126,7 +154,7 @@ and what each mark means. Marks without a legend are decoration.
 </div>
 ```
 
-## 7. Rendering (non-normative)
+## 8. Rendering (non-normative)
 
 `weid.css` in this repository is the reference implementation: ~160 lines, no
 JavaScript, no build step. It ships two theme hooks (`prefers-color-scheme` and
@@ -136,14 +164,14 @@ recolouring.
 The three marks are distinguished by **line style, not colour**, so they survive
 monochrome printing and are legible to readers who do not distinguish colours.
 
-## 8. Accessibility — known ceiling
+## 9. Accessibility — known ceiling
 
 The marks are visual. A screen-reader user hears the legend and the notes (both
 are real text) but gets no signal at the marked passages themselves. Authors who
 need that today should add visually-hidden text inside the span. A future
 version may specify it; v0.1 does not, rather than specify it wrong.
 
-## 9. What weid is not
+## 10. What weid is not
 
 - **Not a detector.** It records what the author declares. It cannot verify it,
   and a convention that claimed to would be lying.

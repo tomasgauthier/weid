@@ -123,7 +123,47 @@
 
 .weid-legend li { margin: 0.15rem 0; }
 
-/* ── 4. Toggle, sin JavaScript ─────────────────────────────────────
+/* ── 4. Píldora de voz ─────────────────────────────────────────────
+   La contraparte visible de data-weid-voice. Va arriba de la leyenda,
+   porque es lo primero que un lector quiere saber: ¿la voz de quién es
+   esta? */
+
+.weid-voice {
+  display: inline-flex;
+  align-items: baseline;
+  margin: 0 0 0.7rem;
+  padding: 0.15rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--weid-accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+.weid-voice-src {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.weid-voice-src::before {
+  content: "·";
+  margin: 0 0.4rem;
+  opacity: 0.6;
+}
+
+/* La voz de un tercero se ve distinta a propósito: es el caso que esta
+   convención existe para exponer, no uno más de la lista. */
+.weid-voice--third-party { color: #b45309; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .weid-voice--third-party { color: #fbbf24; }
+}
+:root.dark .weid-voice--third-party,
+:root[data-theme="dark"] .weid-voice--third-party { color: #fbbf24; }
+
+/* ── 5. Toggle, sin JavaScript ─────────────────────────────────────
    Un checkbox y :has(). El estado vive en el DOM, no en un script. */
 
 .weid-toggle {

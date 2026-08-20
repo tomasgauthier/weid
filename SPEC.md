@@ -90,6 +90,18 @@ fine-tune, a style guide. It is optional for `model` and `author`, and
 **REQUIRED for `third-party`**: an unnamed imitation of a living writer is the
 case this attribute exists to expose.
 
+Renderers SHOULD surface this as a pill above the legend rather than bury it in
+prose: whose voice this is, is the first thing a reader wants to know.
+
+```html
+<span class="weid-voice">Author's voice<span class="weid-voice-src">tgdoppelganger</span></span>
+```
+
+For `third-party`, add `weid-voice--third-party`, which renders in a different
+colour. The distinction is deliberate: an AI writing in a named third party's
+voice is the case this attribute exists to expose, and it should not look like
+one more entry in a list.
+
 `author` is not a lesser claim than human writing, and not a greater one. It
 says something specific: the prose style descends from the human's corpus, so
 the voice is theirs even where the sentences are not. Readers can weigh that

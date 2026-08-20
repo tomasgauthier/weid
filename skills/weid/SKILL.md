@@ -144,6 +144,16 @@ declara, porque es información distinta:
   opcional**: imitar a alguien sin decirlo es justamente lo que esta convención
   existe para exponer.
 
+En la leyenda, esa declaración va como píldora arriba de todo, no enterrada en
+la prosa — es lo primero que un lector quiere saber:
+
+```html
+<span class="weid-voice">Voz del autor<span class="weid-voice-src">tgdoppelganger</span></span>
+```
+
+Para `third-party` agrega `weid-voice--third-party`, que se pinta distinto a
+propósito.
+
 weid se compone con las skills de voz, no las reemplaza. Una decide cómo suena
 el texto; la otra registra de quién es cada cosa. Si hay una skill de voz
 activa en la sesión, dilo en el atributo sin que te lo pidan.
@@ -155,14 +165,15 @@ adaptada al texto —no la copies literal, escríbela en la voz del autor:
 
 ```html
 <div class="weid-legend">
-<strong>Cómo se escribió esto.</strong> [Con qué se escribió, incluida la skill
-de voz si la hubo.] Lo subrayado es mío; <strong>lo que no lleva marca lo
+<span class="weid-voice">Voz del autor<span class="weid-voice-src">tgdoppelganger</span></span>
+<strong>Cómo se escribió esto.</strong> [Con qué se escribió. Si hubo skill de
+voz, la píldora la nombra y acá explicas en media línea qué significa.] Lo subrayado es mío; <strong>lo que no lleva marca lo
 redactó el modelo</strong>.
 <ul>
 <li><span class="weid-verbatim">Subrayado continuo</span>: palabras textuales mías.</li>
 <li><span class="weid-idea">Subrayado a trazos</span>: idea mía, redactada en conjunto.</li>
 <li><span class="weid-experience">Subrayado punteado</span>: experiencia o dato personal mío.</li>
-<li><span class="weid-note">Nota al margen</span>: acá el contenido vino del modelo, no solo la redacción.</li>
+<li><span class="weid-note">Nota al margen</span>: argumento o dato que puso el modelo, no yo.</li>
 </ul>
 </div>
 ```

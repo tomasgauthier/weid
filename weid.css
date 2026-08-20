@@ -72,8 +72,30 @@
   color: var(--weid-accent);
 }
 
+/* Dentro de la leyenda, la nota es una muestra de sí misma, no una nota:
+   se queda en su viñeta en vez de irse flotando al margen. */
+.weid-legend .weid-note {
+  display: inline;
+  float: none;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  color: var(--weid-note-color);
+}
+
 /* Al margen cuando hay espacio. Bajo 1100px vuelve sola al flujo. */
 @media (min-width: 1100px) {
+  .weid-legend .weid-note {
+    display: inline;
+    float: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
   .weid-note {
     float: right;
     clear: right;
@@ -129,7 +151,10 @@
    esta? */
 
 .weid-voice {
-  display: inline-flex;
+  /* flex + fit-content, no inline-flex: la píldora toma línea propia sin
+     necesitar un contenedor extra alrededor. */
+  display: flex;
+  width: fit-content;
   align-items: baseline;
   margin: 0 0 0.7rem;
   padding: 0.15rem 0.65rem;

@@ -1,6 +1,11 @@
-# iHuman — a convention for marking human contribution in AI-assisted text
+# weid — a convention for marking human contribution in AI-assisted text
 
 **Version 0.1 · Draft · MIT**
+
+> ***weid-***, the Proto-Indo-European root meaning *to see*, is the ancestor of
+> both **idea** and **evidence** — that which is plainly seen. The name states
+> the scope: this convention makes visible which ideas are human. It shows; it
+> does not prove.
 
 ## 1. The gap this fills
 
@@ -16,7 +21,7 @@ and C2PA. The EU AI Act, Article 50, makes machine-readable marking an
 obligation. None of them mark *which sentences the human actually contributed,
 and in what way*.
 
-That is the whole of iHuman. It is a complement to `ai-disclosure`, not a
+That is the whole of weid. It is a complement to `ai-disclosure`, not a
 competitor: use both.
 
 ## 2. The base rule
@@ -28,7 +33,7 @@ convention is cheap enough to actually use: in an assisted text, the human
 contribution is the scarce thing, so it is the thing worth marking — and the
 thing a reader would otherwise have no way to find.
 
-A document that carries iHuman marks but no disclosure attribute (§3) is
+A document that carries weid marks but no disclosure attribute (§3) is
 malformed. Without the baseline, the marks make no claim.
 
 ## 3. Document level
@@ -69,16 +74,16 @@ added without evidence that three is not enough.
 
 | Class | Marks | Rendered as |
 |---|---|---|
-| `ih-verbatim` | the human's own words, verbatim or nearly so | solid underline |
-| `ih-idea` | an idea or intuition originated by the human, written up jointly | dashed underline |
-| `ih-experience` | the human's lived experience, anecdote, or personal fact | dotted underline |
+| `weid-verbatim` | the human's own words, verbatim or nearly so | solid underline |
+| `weid-idea` | an idea or intuition originated by the human, written up jointly | dashed underline |
+| `weid-experience` | the human's lived experience, anecdote, or personal fact | dotted underline |
 
 ```html
-<p><span class="ih-experience">I saw a poster for three sold-out
+<p><span class="weid-experience">I saw a poster for three sold-out
 nights.</span> The dates were seven months out.</p>
 ```
 
-Marks nest. `<span class="ih-experience"><span class="ih-verbatim">…</span></span>`
+Marks nest. `<span class="weid-experience"><span class="weid-verbatim">…</span></span>`
 is well-formed and means what it looks like: a lived experience, told in the
 human's own words.
 
@@ -93,7 +98,7 @@ The inverse claim — *this argument came from the model* — is carried by a no
 placed inside the paragraph it annotates:
 
 ```html
-<p><span class="ih-note">The counter-argument here was the model's.</span>
+<p><span class="weid-note">The counter-argument here was the model's.</span>
 Variety is not the side effect of the system that works: it is the mechanism
 by which it works.</p>
 ```
@@ -106,24 +111,24 @@ Renderers MAY move notes into the margin where the layout allows.
 
 ## 6. The legend is mandatory
 
-A document using iHuman MUST carry a visible legend that states the base rule
+A document using weid MUST carry a visible legend that states the base rule
 and what each mark means. Marks without a legend are decoration.
 
 ```html
-<div class="ih-legend">
+<div class="weid-legend">
   <strong>How this was written.</strong> Written in conversation with an AI.
   The underlined passages are mine; anything unmarked is the model's writing.
   <ul>
-    <li><span class="ih-verbatim">Solid</span>: my own words.</li>
-    <li><span class="ih-idea">Dashed</span>: my idea, written up together.</li>
-    <li><span class="ih-experience">Dotted</span>: something I lived.</li>
+    <li><span class="weid-verbatim">Solid</span>: my own words.</li>
+    <li><span class="weid-idea">Dashed</span>: my idea, written up together.</li>
+    <li><span class="weid-experience">Dotted</span>: something I lived.</li>
   </ul>
 </div>
 ```
 
 ## 7. Rendering (non-normative)
 
-`ihuman.css` in this repository is the reference implementation: ~160 lines, no
+`weid.css` in this repository is the reference implementation: ~160 lines, no
 JavaScript, no build step. It ships two theme hooks (`prefers-color-scheme` and
 a `.dark` / `[data-theme="dark"]` class) and five custom properties for
 recolouring.
@@ -138,10 +143,14 @@ are real text) but gets no signal at the marked passages themselves. Authors who
 need that today should add visually-hidden text inside the span. A future
 version may specify it; v0.1 does not, rather than specify it wrong.
 
-## 9. What iHuman is not
+## 9. What weid is not
 
 - **Not a detector.** It records what the author declares. It cannot verify it,
   and a convention that claimed to would be lying.
+- **Not proof.** Evidence and proof are different things, and the name picks the
+  weaker, honest one. A mark shows; it does not demonstrate. Anyone willing to
+  lie in a weid mark was already willing to lie in a byline. Cryptographic
+  provenance is a different problem, and C2PA is working on it.
 - **Not a compliance certificate.** It may help satisfy transparency duties; it
   does not discharge them.
 - **Not a percentage.** No word counts, no "17% human". The unit is the claim,

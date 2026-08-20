@@ -1,161 +1,161 @@
-/*! iHuman v0.1 — capa visible de disclosure de autoría · MIT
+/*! weid v0.1 — capa visible de disclosure de autoría · MIT
  *
  *  Regla base: en un documento declarado como asistido por IA, lo que NO
  *  lleva marca lo escribió la IA. Las marcas señalan lo humano, porque lo
  *  humano es lo escaso — y lo que hay que poder auditar.
  *
- *  Uso: <link rel="stylesheet" href="ihuman.css">  y nada más.
+ *  Uso: <link rel="stylesheet" href="weid.css">  y nada más.
  *  Sin build, sin JavaScript, sin dependencias.
  */
 
 :root {
-  --ih-accent: #0f766e;                 /* marcas humanas */
-  --ih-note-color: #78716c;             /* notas de aporte de la IA */
-  --ih-border: rgb(214 211 209 / 0.6);
-  --ih-note-width: 172px;
-  --ih-note-gap: 28px;
+  --weid-accent: #0f766e;                 /* marcas humanas */
+  --weid-note-color: #78716c;             /* notas de aporte de la IA */
+  --weid-border: rgb(214 211 209 / 0.6);
+  --weid-note-width: 172px;
+  --weid-note-gap: 28px;
 }
 
 /* Oscuro por preferencia del sistema. `:not(.light)` deja que un sitio que
    fuerza tema claro se salte esto agregando class="light" al <html>. */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --ih-accent: #5eead4;
-    --ih-note-color: #a8a29e;
-    --ih-border: rgb(68 64 60 / 0.6);
+    --weid-accent: #5eead4;
+    --weid-note-color: #a8a29e;
+    --weid-border: rgb(68 64 60 / 0.6);
   }
 }
 
 /* Oscuro por clase (Tailwind, Astro, temas con data-theme). */
 :root.dark,
 :root[data-theme="dark"] {
-  --ih-accent: #5eead4;
-  --ih-note-color: #a8a29e;
-  --ih-border: rgb(68 64 60 / 0.6);
+  --weid-accent: #5eead4;
+  --weid-note-color: #a8a29e;
+  --weid-border: rgb(68 64 60 / 0.6);
 }
 
 /* ── 1. Marcas humanas ─────────────────────────────────────────────
    Se distinguen por estilo de línea, no por color: legibles para quien
    no distingue colores, y sobreviven a la impresión en blanco y negro. */
 
-.ih-verbatim,
-.ih-idea,
-.ih-experience {
+.weid-verbatim,
+.weid-idea,
+.weid-experience {
   text-decoration-line: underline;
-  text-decoration-color: var(--ih-accent);
+  text-decoration-color: var(--weid-accent);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
 }
 
-.ih-verbatim   { text-decoration-style: solid; }
-.ih-idea       { text-decoration-style: dashed; }
-.ih-experience { text-decoration-style: dotted; }
+.weid-verbatim   { text-decoration-style: solid; }
+.weid-idea       { text-decoration-style: dashed; }
+.weid-experience { text-decoration-style: dotted; }
 
 /* ── 2. Notas de aporte de la IA ───────────────────────────────────
    Van dentro del párrafo que anotan. Sin CSS siguen ahí y siguen siendo
    honestas: el disclosure no depende de la hoja de estilos. */
 
-.ih-note {
+.weid-note {
   display: block;
   margin: 0.75rem 0;
   padding-left: 0.85rem;
-  border-left: 2px solid var(--ih-border);
-  color: var(--ih-note-color);
+  border-left: 2px solid var(--weid-border);
+  color: var(--weid-note-color);
   font-size: 0.8rem;
   line-height: 1.45;
   font-style: normal;
   text-align: left;
 }
 
-.ih-note::before {
+.weid-note::before {
   content: "◦ ";
-  color: var(--ih-accent);
+  color: var(--weid-accent);
 }
 
 /* Al margen cuando hay espacio. Bajo 1100px vuelve sola al flujo. */
 @media (min-width: 1100px) {
-  .ih-note {
+  .weid-note {
     float: right;
     clear: right;
-    width: var(--ih-note-width);
+    width: var(--weid-note-width);
     margin: 0.25rem 0 0.75rem 0;
-    margin-right: calc(-1 * (var(--ih-note-width) + var(--ih-note-gap)));
+    margin-right: calc(-1 * (var(--weid-note-width) + var(--weid-note-gap)));
     padding-left: 0;
     border-left: 0;
   }
 
   /* Escape para layouts angostos o con overflow: hidden. */
-  .ih-notes-inline .ih-note {
+  .weid-notes-inline .weid-note {
     float: none;
     width: auto;
     margin: 0.75rem 0;
     padding-left: 0.85rem;
-    border-left: 2px solid var(--ih-border);
+    border-left: 2px solid var(--weid-border);
   }
 }
 
 @media print {
-  .ih-note {
+  .weid-note {
     float: none;
     width: auto;
     margin: 0.5rem 0;
     padding-left: 0.85rem;
-    border-left: 2px solid var(--ih-border);
+    border-left: 2px solid var(--weid-border);
   }
 }
 
 /* ── 3. Leyenda ────────────────────────────────────────────────────
    Obligatoria: sin ella las marcas son decoración, no disclosure. */
 
-.ih-legend {
+.weid-legend {
   font-size: 0.85rem;
   line-height: 1.5;
-  border: 1px solid var(--ih-border);
+  border: 1px solid var(--weid-border);
   border-radius: 0.5rem;
   padding: 0.85rem 1rem;
   margin-bottom: 2rem;
 }
 
-.ih-legend ul {
+.weid-legend ul {
   margin: 0.5rem 0 0;
   padding-left: 1.1rem;
 }
 
-.ih-legend li { margin: 0.15rem 0; }
+.weid-legend li { margin: 0.15rem 0; }
 
 /* ── 4. Toggle, sin JavaScript ─────────────────────────────────────
    Un checkbox y :has(). El estado vive en el DOM, no en un script. */
 
-.ih-toggle {
+.weid-toggle {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.ih-toggle-label {
+.weid-toggle-label {
   float: right;
   margin-left: 1rem;
   padding: 0.15rem 0.6rem;
   border: 1px solid currentColor;
   border-radius: 999px;
-  color: var(--ih-accent);
+  color: var(--weid-accent);
   font-size: 0.75rem;
   white-space: nowrap;
   cursor: pointer;
 }
 
-.ih-toggle:focus-visible + .ih-toggle-label {
-  outline: 2px solid var(--ih-accent);
+.weid-toggle:focus-visible + .weid-toggle-label {
+  outline: 2px solid var(--weid-accent);
   outline-offset: 2px;
 }
 
-.ih-lbl-off { display: none; }
+.weid-lbl-off { display: none; }
 
-:has(.ih-toggle:checked) :is(.ih-verbatim, .ih-idea, .ih-experience) {
+:has(.weid-toggle:checked) :is(.weid-verbatim, .weid-idea, .weid-experience) {
   text-decoration-line: none;
 }
-:has(.ih-toggle:checked) .ih-note   { display: none; }
-:has(.ih-toggle:checked) .ih-lbl-on  { display: none; }
-:has(.ih-toggle:checked) .ih-lbl-off { display: inline; }
-:has(.ih-toggle:checked) .ih-legend ul { opacity: 0.45; }
+:has(.weid-toggle:checked) .weid-note   { display: none; }
+:has(.weid-toggle:checked) .weid-lbl-on  { display: none; }
+:has(.weid-toggle:checked) .weid-lbl-off { display: inline; }
+:has(.weid-toggle:checked) .weid-legend ul { opacity: 0.45; }

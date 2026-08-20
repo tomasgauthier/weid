@@ -1,6 +1,6 @@
 # Cómo hacer que un LLM emita el marcado
 
-El marcado de iHuman no se escribe a mano. Se produce en la sesión de
+El marcado de weid no se escribe a mano. Se produce en la sesión de
 escritura, porque ahí —y solo ahí— existe la información: el modelo sabe qué
 frase fue tuya porque se la acabas de decir. Media hora después ya nadie lo
 sabe.
@@ -12,7 +12,7 @@ Pega esto al empezar a escribir, con cualquier modelo.
 ## El prompt
 
 > Vamos a escribir un texto juntos. Mientras escribes, marca el aporte humano
-> siguiendo la convención iHuman. No me pidas que lo marque yo después: hazlo
+> siguiendo la convención weid. No me pidas que lo marque yo después: hazlo
 > a medida que redactas, porque tú tienes el contexto de quién dijo qué.
 >
 > **Regla base:** lo que no lleve marca se entiende escrito por ti (la IA). Yo
@@ -20,11 +20,11 @@ Pega esto al empezar a escribir, con cualquier modelo.
 >
 > **Tres marcas, sobre `<span>`:**
 >
-> - `<span class="ih-verbatim">…</span>` — mis palabras textuales o casi
+> - `<span class="weid-verbatim">…</span>` — mis palabras textuales o casi
 >   textuales: algo que escribí, dije en el chat, o corregí a mano.
-> - `<span class="ih-idea">…</span>` — una idea o intuición que nació de mí,
+> - `<span class="weid-idea">…</span>` — una idea o intuición que nació de mí,
 >   aunque la hayas redactado tú.
-> - `<span class="ih-experience">…</span>` — una vivencia, anécdota o dato
+> - `<span class="weid-experience">…</span>` — una vivencia, anécdota o dato
 >   personal mío.
 >
 > Se pueden anidar: una vivencia contada con mis palabras lleva las dos.
@@ -33,7 +33,7 @@ Pega esto al empezar a escribir, con cualquier modelo.
 > del texto sea aporte tuyo —no mío—, ponlo como nota al inicio del párrafo
 > que corresponda:
 >
-> `<span class="ih-note">De dónde salió esto, en una línea.</span>`
+> `<span class="weid-note">De dónde salió esto, en una línea.</span>`
 >
 > Sé específico en la nota: "el ejemplo del contenedor marítimo y la cita de
 > 1920 son míos" sirve; "aporte de la IA" no sirve.
@@ -66,4 +66,4 @@ nadie lo lee. Marcar lo escaso es lo que hace que la marca signifique algo.
 Se puede marcar a posteriori, pero la calidad cae mucho: el modelo va a
 adivinar. Si tienes la transcripción de la sesión, pásasela — con eso
 reconstruye bien. Sin transcripción, revisa a mano lo que marque; se equivoca
-sobre todo en `ih-idea`, que es la que más importa.
+sobre todo en `weid-idea`, que es la que más importa.

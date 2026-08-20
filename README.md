@@ -1,7 +1,12 @@
-# iHuman
+# weid
 
 **Una convención para marcar el aporte humano dentro de un texto escrito con IA.**
 Tres clases de CSS, un atributo, ningún JavaScript.
+
+> ***weid-*** — raíz indoeuropea que significa *ver*. De ella vienen **ver**,
+> **vidente**, **idea** y **evidencia**: literalmente, *lo que se ve con
+> claridad*. Es la familia entera de este proyecto en una sola palabra: hacer
+> visible qué ideas son humanas.
 
 ---
 
@@ -17,7 +22,7 @@ alguien, el giro del argumento nació en una conversación entre los dos. Los
 estándares de disclosure que existen no pueden decir eso. Marcan el documento
 completo —"esto tuvo IA"— y ahí se acaban.
 
-iHuman marca lo otro: **qué es humano, y de qué manera lo es.**
+weid marca lo otro: **qué es humano, y de qué manera lo es.**
 
 La apuesta de fondo: pensar sigue siendo una actividad humana. Lo que cambió
 es que ahora está aumentada. Un disclosure honesto debiera poder mostrar eso
@@ -35,10 +40,10 @@ en un texto asistido lo humano es lo escaso, y marcar lo escaso es más barato
 ## Cómo se usa
 
 ```html
-<link rel="stylesheet" href="ihuman.css">
+<link rel="stylesheet" href="weid.css">
 
 <article data-ai-disclosure="ai-assisted" data-ai-model="claude-opus-5">
-  <p><span class="ih-experience">Ayer vi un cartel de una banda con tres
+  <p><span class="weid-experience">Ayer vi un cartel de una banda con tres
   fechas sold out.</span> Es decir, miles de personas ya pagaron por estar
   juntas dentro de siete meses.</p>
 </article>
@@ -48,14 +53,14 @@ Tres clases sobre `<span>`:
 
 | Clase | Marca | Se ve como |
 |---|---|---|
-| `ih-verbatim` | palabras textuales de la persona | subrayado continuo |
-| `ih-idea` | idea suya, redactada en conjunto | subrayado a trazos |
-| `ih-experience` | vivencia, anécdota o dato personal suyo | subrayado punteado |
+| `weid-verbatim` | palabras textuales de la persona | subrayado continuo |
+| `weid-idea` | idea suya, redactada en conjunto | subrayado a trazos |
+| `weid-experience` | vivencia, anécdota o dato personal suyo | subrayado punteado |
 
 Y una cuarta pieza para el lado contrario, el aporte del modelo:
 
 ```html
-<p><span class="ih-note">El contraargumento acá lo puso el modelo.</span>
+<p><span class="weid-note">El contraargumento acá lo puso el modelo.</span>
 La variedad no es el efecto colateral del sistema que funciona: es el
 mecanismo por el cual funciona.</p>
 ```
@@ -72,7 +77,7 @@ son decoración. Está en `example.html`, lista para copiar.
 | Archivo | Qué es |
 |---|---|
 | `SPEC.md` | La convención, en inglés. Es el producto. |
-| `ihuman.css` | Implementación de referencia, ~160 líneas. |
+| `weid.css` | Implementación de referencia, ~160 líneas. |
 | `example.html` | Ábrelo con doble click. Es la demo y es el test. |
 | `PROMPT.md` | Cómo hacer que un LLM emita el marcado mientras escribes. |
 
@@ -88,10 +93,10 @@ cualquier LLM lo emita mientras trabajan juntos.
 
 ## Relación con los estándares que ya existen
 
-iHuman **no compite** con ellos, los complementa:
+weid **no compite** con ellos, los complementa:
 
 - [`ai-disclosure`](https://github.com/dweekly/ai-content-disclosure) (W3C
-  Community Group, 2026) resuelve el nivel documento. iHuman lo usa tal cual,
+  Community Group, 2026) resuelve el nivel documento. weid lo usa tal cual,
   con prefijo `data-` para que valide hoy.
 - [IPTC digital source types](https://iptc.org/news/iptc-publishes-metadata-guidance-for-ai-generated-synthetic-media/)
   y C2PA cubren imagen y procedencia criptográfica.
@@ -100,9 +105,14 @@ iHuman **no compite** con ellos, los complementa:
 
 Ninguno marca la frase. Ese es el hueco.
 
-## Lo que iHuman no es
+## Lo que weid no es
 
 - **No es un detector.** Registra lo que el autor declara. No lo verifica.
+- **No es una prueba.** Y la distinción está en el nombre: *weid* es evidencia
+  —lo que queda a la vista—, no prueba. Una marca muestra; no demuestra. Quien
+  quiera mentir con weid puede, igual que puede mentir en la firma de un
+  artículo. El disclosure honesto sirve a quien quiere ser honesto; el resto es
+  criptografía, y para eso está C2PA.
 - **No es un certificado de cumplimiento.** Ayuda; no descarga la obligación.
 - **No es un porcentaje.** Nada de "17% humano". La unidad es la afirmación,
   no la proporción: una sola frase marcada puede cargar la idea entera.

@@ -95,7 +95,8 @@ son decoración. Está en `example.html`, lista para copiar.
 | `SPEC.md` | La convención, en inglés. Es el producto. |
 | `weid.css` | Implementación de referencia, ~160 líneas. |
 | `example.html` | Ábrelo con doble click. Es la demo y es el test. |
-| `PROMPT.md` | Cómo hacer que un LLM emita el marcado mientras escribes. |
+| `PROMPT.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. |
+| `skills/weid/` | La misma instrucción como skill, para runtimes que las soportan. |
 
 Sin `package.json`, sin build, sin CI. Copias el CSS y funciona: Astro,
 WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.
@@ -104,8 +105,20 @@ WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.
 
 Nadie va a etiquetar 3.000 palabras con la mano. La gracia es que el marcado
 salga **de la sesión de escritura misma**: el modelo sabe qué frase fue tuya
-porque la acabas de decir. `PROMPT.md` tiene las instrucciones para que
-cualquier LLM lo emita mientras trabajan juntos.
+porque la acabas de decir. Esa información existe mientras la conversación está
+viva y no después — ni el modelo la recupera.
+
+Por eso el productor viene en dos formas:
+
+- **`PROMPT.md`** — portable. Se copia y se pega en cualquier LLM.
+- **`skills/weid/`** — una skill, para runtimes que las soportan (Claude Code,
+  entre otros). Se instala con un symlink a la carpeta de skills y se activa
+  sola cuando estás escribiendo algo que se va a publicar. Es la forma fuerte:
+  un prompt hay que acordarse de pegarlo.
+
+La skill **se compone con las skills de voz, no las reemplaza**: si estás
+escribiendo con una persona construida desde tus propios textos, weid lo
+detecta y lo declara en `data-weid-voice`.
 
 ## Relación con los estándares que ya existen
 

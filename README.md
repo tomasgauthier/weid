@@ -88,6 +88,60 @@ imitar sin decirlo es justo lo que hay que declarar).
 Falta una sola cosa más, y es obligatoria: **la leyenda**. Sin ella las marcas
 son decoración. Está en `example.html`, lista para copiar.
 
+## Instalarlo en tu blog
+
+Son dos cosas, y ninguna es un plugin: **cargar el CSS una vez** y **que el
+marcado sobreviva a tu editor**.
+
+| Plataforma | Cómo cargas `weid.css` |
+|---|---|
+| HTML a mano | `<link rel="stylesheet" href="weid.css">` |
+| WordPress | Apariencia → Personalizar → **CSS adicional**, y pegas el archivo. O `wp_enqueue_style()` en el tema hijo. |
+| Ghost | Configuración → **Code injection** → Site header, dentro de un `<style>`. |
+| Hugo / Jekyll / 11ty | Copias el archivo a `assets/` o `static/` y lo enlazas en el layout base. |
+| Astro | `import "../styles/weid.css"` **desde el `.astro`**, no con `@import` dentro de otro CSS (ver abajo). |
+| Substack, Medium, LinkedIn | No se puede: no dejan meter CSS. El marcado igual sobrevive como texto, pero no se ve. |
+
+### La trampa de Astro (y de cualquier cosa con Vite)
+
+Si metes `@import "./weid.css"` dentro de tu `global.css`, **Vite no vigila el
+archivo importado**: cachea el CSS ya procesado y sigue sirviendo la versión
+vieja hasta que reinicies el servidor. Se ve como si tus reglas nuevas no
+existieran. Impórtalo desde el componente `.astro` y desaparece el problema.
+
+### El atributo a nivel documento
+
+`data-ai-disclosure` va en el elemento que envuelve la obra, y ese suele
+pintarlo la plantilla del tema, no el editor. Si no puedes o no quieres tocar la
+plantilla, envuelve el contenido dentro del propio post:
+
+```html
+<div data-ai-disclosure="ai-assisted" data-weid-voice="author">
+  … el texto …
+</div>
+```
+
+Funciona igual: el CSS no depende del atributo. El atributo es para las
+máquinas; las clases son para los ojos.
+
+### WordPress: ¿hace falta un plugin?
+
+**No.** El marcado de weid sobrevive al sanitizador de WordPress tal cual:
+
+- KSES permite `class` y `data-*` como atributos globales sobre los elementos
+  que ya acepta, y `<span>` es uno de ellos. Así que las marcas y los atributos
+  de declaración pasan aunque el autor no tenga la capacidad `unfiltered_html`.
+- Esta es exactamente la razón por la que la convención usa `<span class="…">` y
+  no etiquetas propias: `<t-frase>` sí se lo come KSES.
+
+Lo único incómodo es escribir las marcas: en Gutenberg hay que usar el **editor
+de código** (Opciones → Editor de código) o un bloque HTML personalizado, porque
+la barra de formato no trae un botón para esto.
+
+Un plugin, entonces, solo ahorraría clicks: un botón de formato en la barra y
+una forma de inyectar el atributo en el `<article>` sin tocar el tema. No está
+en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo.
+
 ## Qué hay acá
 
 | Archivo | Qué es |

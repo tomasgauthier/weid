@@ -205,7 +205,8 @@ exactly the one that matters most.
 
 ## Reference
 
-The complete convention is in `SPEC.md`, at the root of the weid repo (if this
+The complete convention is in `SPEC.md` (`SPEC.es.md` in Spanish), at the root
+of the weid repo (if this
 skill is installed by symlink, follow the link back to the repo). The reference
 CSS is `weid.css`: 160 lines, no JavaScript. The etymology, which is also the
 thesis: *weid-* is the Proto-Indo-European root of **to see**, and from it come

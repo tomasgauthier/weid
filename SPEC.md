@@ -1,5 +1,7 @@
 # weid — a convention for marking human contribution in AI-assisted text
 
+**English** · [Español](SPEC.es.md)
+
 **Version 0.1 · Draft · MIT**
 
 > ***weid-***, the Proto-Indo-European root meaning *to see*, is the ancestor of

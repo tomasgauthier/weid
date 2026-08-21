@@ -93,7 +93,7 @@ though the words are its. An optional attribute says so:
 because imitating without saying so is precisely what has to be declared).
 
 One more thing is missing, and it is mandatory: **the legend**. Without it the
-marks are decoration. It is in `example.html`, ready to copy.
+marks are decoration. It is in `example.en.html`, ready to copy.
 
 ## Installing it on your blog
 
@@ -155,9 +155,9 @@ work.
 
 | File | What it is |
 |---|---|
-| `SPEC.md` | The convention. It is the product. |
+| `SPEC.md` | The convention. It is the product. Spanish version in [`SPEC.es.md`](SPEC.es.md). |
 | `weid.css` | Reference implementation, ~160 lines. |
-| `example.html` | Open it with a double click. It is the demo and it is the test. |
+| `example.en.html` | Open it with a double click. It is the demo and it is the test. Spanish version in `example.html`. |
 | `PROMPT.md` | The portable prompt: works with any LLM, copy and paste. Spanish version in [`PROMPT.es.md`](PROMPT.es.md). |
 | `skills/weid/` | The same instruction as a skill, for runtimes that support them. `SKILL.md` in English, `SKILL.es.md` in Spanish. |
 

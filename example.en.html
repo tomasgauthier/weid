@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>weid — example</title>
+<meta name="ai-disclosure" content="mixed">
+<link rel="stylesheet" href="weid.css">
+<style>
+  /* Page styles, not weid's. The convention ships no typography. */
+  body {
+    max-width: 40rem;
+    margin: 4rem auto;
+    padding: 0 1.25rem;
+    font: 17px/1.65 Georgia, "Iowan Old Style", serif;
+    color: #1c1917;
+    background: #fff;
+  }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin-bottom: .25rem; }
+  .meta { color: #78716c; font-size: .85rem; margin-bottom: 2.5rem; }
+  .lang { color: #78716c; font-size: .8rem; margin-bottom: 2rem; }
+  .lang a { color: inherit; }
+  hr { border: 0; border-top: 1px solid rgb(214 211 209 / .6); margin: 3rem 0; }
+  code { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e7e5e4; background: #1c1917; }
+    .meta, .lang { color: #a8a29e; }
+  }
+</style>
+</head>
+<body>
+
+<p class="lang"><strong>English</strong> · <a href="example.html">Español</a></p>
+
+<h1>The standardisation of prosperity</h1>
+<p class="meta">Excerpt · 20 August 2026</p>
+
+<article data-ai-disclosure="ai-assisted"
+         data-ai-model="claude-opus-5"
+         data-ai-provider="Anthropic"
+         data-weid-voice="author"
+         data-weid-voice-source="tgdoppelganger">
+
+  <div class="weid-legend">
+    <input type="checkbox" id="weid-off" class="weid-toggle">
+    <label for="weid-off" class="weid-toggle-label"><span class="weid-lbl-on">Hide marks</span><span class="weid-lbl-off">Show marks</span></label>
+    <span class="weid-voice">Author's voice<span class="weid-voice-src">tgdoppelganger</span></span>
+    <strong>How this was written.</strong> This text was written in conversation
+    with an AI, using a skill built from my own texts: the voice is mine,
+    reconstructed, not the model's plain default. The underlined passages are
+    mine; anything unmarked was drafted by the model on the outline the two of
+    us put together.
+    <ul>
+      <li><span class="weid-verbatim">Solid underline</span>: my own words.</li>
+      <li><span class="weid-idea">Dashed underline</span>: my idea, written up together.</li>
+      <li><span class="weid-experience">Dotted underline</span>: something I lived.</li>
+      <li><span class="weid-note">Margin note</span>: an argument or fact the model contributed, not me.</li>
+    </ul>
+  </div>
+
+  <p><span class="weid-experience"><span class="weid-verbatim">Yesterday I saw a
+  poster for a band with three sold-out nights.</span> The dates: March 2027.
+  It is August 2026.</span> Which is to say, thousands of people have already
+  paid to be together, in a specific place, seven months from now. I stood
+  looking at that poster longer than I would like to admit, and I was left with
+  a single question: <span class="weid-verbatim">what makes that
+  possible?</span></p>
+
+  <p><span class="weid-note">The Shenzhen–Maipú image and the phrase "miracle of
+  coordination" are the model's.</span><span class="weid-verbatim">Trust.</span>
+  It is that simple. Because the system we live in, with all its obvious
+  problems — <span class="weid-idea">and they are serious, starting with how
+  wealth concentrates</span> —, rests on a foundation we almost never look at
+  head-on: it lets us predict future behaviour with enough certainty to act
+  today. A parcel crossing the Pacific from a warehouse in Shenzhen to a door
+  in Maipú, without anyone in the chain knowing anyone else, is a miracle of
+  coordination we stopped marvelling at out of sheer excess of functioning.</p>
+
+  <p><span class="weid-note">The correction — variety as mechanism and not as
+  excess — is the argument the model set against my original thesis.</span>Variety
+  is not the side effect of the system that works: it is the mechanism by which
+  it works. AliExpress delivers because, if it doesn't, there is the other one.
+  <span class="weid-verbatim">The twenty car brands</span> are the reason each
+  one works at not failing you.</p>
+
+  <p><span class="weid-idea">That differentiation, luxury and even
+  overconsumption should run in the digital, where the material cost per unit
+  of status is orders of magnitude lower.</span> A digital cosmetic is a server
+  plus a screen; a premium pickup truck is mining, manufacturing, freight and,
+  sooner or later, scrap.</p>
+
+</article>
+
+<hr>
+
+<p style="font-size:.85rem;color:#78716c">
+  This page is the demo and the test for <code>weid.css</code>. To check it:
+  shrink the window below 1100&nbsp;px (the notes should return to the text
+  flow), switch your system theme to dark, and disable the stylesheet (the
+  notes should still be legible).
+</p>
+
+</body>
+</html>

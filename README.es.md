@@ -155,7 +155,8 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 | `SPEC.es.md` | La convención. Es el producto. La versión canónica es la inglesa, [`SPEC.md`](SPEC.md). |
 | `weid.css` | Implementación de referencia, ~160 líneas. |
 | `example.es.html` | Ábrelo con doble click. Es la demo y el test visual. En inglés, [`example.html`](example.html). |
-| `test.mjs` | El mismo test, automatizado: renderiza las dos demos y verifica lo que el CSS promete. Opcional — ver abajo. |
+| `test.html` | Los tests. Ábrelo con doble click, igual que la demo. Sin dependencias. |
+| `test.mjs` | Los mismos tests más impresión y las demos reales, en un browser headless. Necesita Playwright — ver abajo. |
 | `PROMPT.es.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. En inglés, [`PROMPT.md`](PROMPT.md). |
 | `skills/weid-es/` | La misma instrucción como skill, para runtimes que las soportan. |
 | `skills/weid/` | La misma skill en inglés. Instala una o la otra. |
@@ -163,8 +164,15 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 Sin `package.json`, sin build, sin CI. Copias el CSS y funciona: Astro,
 WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.
 
-`test.mjs` es lo único con dependencia, y es dependencia de *testear* weid, no de
-usarlo — nada en la convención necesita Node. Para correrlo:
+`test.html` es el test de todos los días: doble click y lees el verde. Renderiza
+fixtures contra `weid.css` en iframes `srcdoc` —que heredan el origen de la
+página, así que funciona sobre `file://`— y los redimensiona cruzando el corte
+de 1100px. No puede emular el medio de impresión, y sobre `file://` no puede
+leer `example.html`, así que verifica el CSS y no las demos.
+
+`test.mjs` cubre esos dos huecos y es lo único con dependencia — dependencia de
+*testear* weid, no de usarlo. Nada en la convención necesita Node. Para
+correrlo:
 
 ```sh
 npm install playwright && npx playwright install chromium

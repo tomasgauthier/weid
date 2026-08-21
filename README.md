@@ -158,7 +158,8 @@ work.
 | `SPEC.md` | The convention. It is the product. Spanish version in [`SPEC.es.md`](SPEC.es.md). |
 | `weid.css` | Reference implementation, ~160 lines. |
 | `example.html` | Open it with a double click. It is the demo and the visual test. Spanish version in [`example.es.html`](example.es.html). |
-| `test.mjs` | The same test, automated: renders both demos and checks what the stylesheet promises. Optional — see below. |
+| `test.html` | The tests. Open it with a double click, same as the demo. No dependencies. |
+| `test.mjs` | The same tests plus print and the real demos, in a headless browser. Needs Playwright — see below. |
 | `PROMPT.md` | The portable prompt: works with any LLM, copy and paste. Spanish version in [`PROMPT.es.md`](PROMPT.es.md). |
 | `skills/weid/` | The same instruction as a skill, for runtimes that support them. |
 | `skills/weid-es/` | The same skill in Spanish. Install one or the other. |
@@ -166,8 +167,15 @@ work.
 No `package.json`, no build, no CI. You copy the CSS and it works: Astro,
 WordPress, Ghost, Hugo, Jekyll, a hand-written `.html`.
 
-`test.mjs` is the one thing with a dependency, and it is a dependency of testing
-weid, not of using it — nothing in the convention needs Node. To run it:
+`test.html` is the everyday test: double click, read the green. It renders
+fixtures against `weid.css` in `srcdoc` iframes — which inherit the page's
+origin, so it works over `file://` — and resizes them across the 1100px
+breakpoint. It cannot emulate the print medium, and over `file://` it cannot
+read `example.html` itself, so it checks the stylesheet rather than the demos.
+
+`test.mjs` covers those two gaps and is the one thing with a dependency — a
+dependency of testing weid, not of using it. Nothing in the convention needs
+Node. To run it:
 
 ```sh
 npm install playwright && npx playwright install chromium

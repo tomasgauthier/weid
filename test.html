@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>weid — tests</title>
+<style>
+  body {
+    max-width: 46rem;
+    margin: 3rem auto;
+    padding: 0 1.25rem;
+    font: 15px/1.6 ui-sans-serif, system-ui, sans-serif;
+    color: #1c1917;
+    background: #fff;
+  }
+  h1 { font-size: 1.4rem; margin-bottom: .25rem; }
+  h2 { font-size: .95rem; margin: 2rem 0 .5rem; text-transform: uppercase; letter-spacing: .06em; color: #78716c; }
+  p.lede { color: #57534e; margin-top: 0; }
+  #summary { font-size: 1.1rem; font-weight: 600; padding: .75rem 1rem; border-radius: .5rem; margin: 1.5rem 0; }
+  #summary.pass { background: #ecfdf5; color: #065f46; }
+  #summary.fail { background: #fef2f2; color: #991b1b; }
+  #summary.running { background: #f5f5f4; color: #57534e; }
+  ol { list-style: none; padding: 0; margin: 0; }
+  li { padding: .3rem 0; border-bottom: 1px solid #f5f5f4; display: flex; gap: .6rem; align-items: baseline; }
+  .tag { font: 600 11px/1.6 ui-monospace, Menlo, monospace; padding: 0 .4rem; border-radius: .25rem; flex: none; }
+  .ok   .tag { background: #d1fae5; color: #065f46; }
+  .fail .tag { background: #fee2e2; color: #991b1b; }
+  .skip .tag { background: #f5f5f4; color: #78716c; }
+  .detail { display: block; color: #a8a29e; font: 12px/1.5 ui-monospace, Menlo, monospace; }
+  .fail .detail { color: #b91c1c; }
+  /* The fixtures need real layout to be measured, so they are moved out of
+     sight rather than hidden — display:none would collapse them to nothing. */
+  #fixtures { position: absolute; left: -99999px; top: 0; }
+  #fixtures iframe { border: 0; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e7e5e4; background: #1c1917; }
+    p.lede { color: #a8a29e; }
+    li { border-bottom-color: #292524; }
+    #summary.pass { background: #052e2b; color: #5eead4; }
+    #summary.fail { background: #450a0a; color: #fca5a5; }
+    #summary.running { background: #292524; color: #a8a29e; }
+    .ok .tag { background: #064e3b; color: #6ee7b7; }
+    .fail .tag { background: #7f1d1d; color: #fecaca; }
+    .skip .tag { background: #292524; color: #a8a29e; }
+  }
+</style>
+</head>
+<body>
+
+<h1>weid — tests</h1>
+<p class="lede">Open this file with a double click. It renders fixtures against
+<code>weid.css</code> and checks what the stylesheet promises. No dependencies,
+no build, no server.</p>
+
+<div id="summary" class="running">running…</div>
+<div id="results"></div>
+<div id="fixtures"></div>
+
+<script>
+// ── Fixtures ───────────────────────────────────────────────────────────────
+// Same shape as example.html: a legend with the four samples, then paragraphs
+// carrying the three human marks and a note. Written into srcdoc iframes,
+// which inherit this document's origin — so they stay readable from here even
+// over file://, where a normal iframe would not be.
+
+const BODY = `
+<article data-ai-disclosure="ai-assisted" data-ai-model="test"
+         data-weid-voice="author" data-weid-voice-source="fixture">
+  <div class="weid-legend">
+    <input type="checkbox" id="weid-off" class="weid-toggle">
+    <label for="weid-off" class="weid-toggle-label"><span class="weid-lbl-on">Hide marks</span><span class="weid-lbl-off">Show marks</span></label>
+    <span class="weid-voice">Author's voice<span class="weid-voice-src">fixture</span></span>
+    <strong>How this was written.</strong> Fixture legend.
+    <ul>
+      <li><span class="weid-verbatim">Solid</span>: my own words.</li>
+      <li><span class="weid-idea">Dashed</span>: my idea, written up together.</li>
+      <li><span class="weid-experience">Dotted</span>: something I lived.</li>
+      <li><span class="weid-note">Margin note</span>: the model's contribution, not mine.</li>
+    </ul>
+  </div>
+  <p><span class="weid-note">This note came from the model.</span><span
+  class="weid-experience"><span class="weid-verbatim">I saw a poster with three
+  sold-out nights.</span> The dates were seven months out.</span> Which is to
+  say thousands of people had already paid to be somewhere together.</p>
+  <p><span class="weid-idea">That differentiation should run in the digital,
+  where the cost per unit of status is far lower.</span> A digital cosmetic is
+  a server plus a screen.</p>
+</article>`;
+
+const styled = `<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="weid.css"></head><body style="margin:0">${BODY}</body></html>`;
+const bare = `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">${BODY}</body></html>`;
+
+// ── Harness ────────────────────────────────────────────────────────────────
+let passed = 0, failed = 0, skipped = 0;
+const results = document.getElementById('results');
+let group = null;
+
+function heading(t) {
+  const h = document.createElement('h2');
+  h.textContent = t;
+  results.appendChild(h);
+  group = document.createElement('ol');
+  results.appendChild(group);
+}
+
+function record(kind, name, detail) {
+  const li = document.createElement('li');
+  li.className = kind;
+  li.innerHTML = `<span class="tag">${kind === 'ok' ? 'PASS' : kind === 'fail' ? 'FAIL' : 'SKIP'}</span><span>${name}${detail ? `<span class="detail">${detail}</span>` : ''}</span>`;
+  group.appendChild(li);
+  if (kind === 'ok') passed++; else if (kind === 'fail') failed++; else skipped++;
+}
+
+const check = (name, ok, detail) => record(ok ? 'ok' : 'fail', name, ok ? '' : detail);
+const skip = (name, why) => record('skip', name, why);
+
+function frame(srcdoc, width, height = 900) {
+  return new Promise((resolve, reject) => {
+    const f = document.createElement('iframe');
+    f.style.width = width + 'px';
+    f.style.height = height + 'px';
+    f.srcdoc = srcdoc;
+    f.onload = () => {
+      try {
+        // Give the stylesheet a tick to apply before anything is measured.
+        requestAnimationFrame(() => resolve(f.contentDocument));
+      } catch (e) { reject(e); }
+    };
+    document.getElementById('fixtures').appendChild(f);
+  });
+}
+
+const box = (doc, sel) => doc.querySelector(sel).getBoundingClientRect();
+const style = (doc, sel, prop) => getComputedStyle(doc.querySelector(sel))[prop];
+
+// ── Tests ──────────────────────────────────────────────────────────────────
+(async () => {
+
+  // Sanity: the stylesheet has to be reachable, or every result below is a lie.
+  const probe = await frame(styled, 1200);
+  const loaded = style(probe, '.weid-verbatim', 'textDecorationLine') === 'underline';
+  if (!loaded) {
+    document.getElementById('summary').className = 'fail';
+    document.getElementById('summary').textContent =
+      'weid.css did not load — this file must sit next to it.';
+    return;
+  }
+
+  heading('The three marks');
+  {
+    const d = probe;
+    const v = style(d, '.weid-verbatim', 'textDecorationStyle');
+    const i = style(d, '.weid-idea', 'textDecorationStyle');
+    const e = style(d, '.weid-experience', 'textDecorationStyle');
+    check('verbatim is a solid underline', v === 'solid', `got ${v}`);
+    check('idea is a dashed underline', i === 'dashed', `got ${i}`);
+    check('experience is a dotted underline', e === 'dotted', `got ${e}`);
+    const colours = new Set([
+      style(d, '.weid-verbatim', 'textDecorationColor'),
+      style(d, '.weid-idea', 'textDecorationColor'),
+      style(d, '.weid-experience', 'textDecorationColor'),
+    ]);
+    check('they differ by line style, not colour',
+      new Set([v, i, e]).size === 3 && colours.size === 1,
+      `${new Set([v,i,e]).size} styles, ${colours.size} colours`);
+    check('marks nest: an experience told in the human\'s own words',
+      !!d.querySelector('.weid-experience .weid-verbatim'));
+  }
+
+  heading('Notes: margin above 1100px, flow below it');
+  {
+    const d = await frame(styled, 1200);
+    const art = box(d, 'article'), note = box(d, 'article > p .weid-note');
+    check('at 1200px the note sits outside the text column',
+      note.left >= art.right - 5,
+      `column ends at ${Math.round(art.right)}, note starts at ${Math.round(note.left)}`);
+    const sample = box(d, '.weid-legend .weid-note');
+    check('the legend sample stays in its bullet',
+      sample.left < art.right - 100,
+      `sample at ${Math.round(sample.left)}`);
+  }
+  {
+    const d = await frame(styled, 900);
+    const art = box(d, 'article'), note = box(d, 'article > p .weid-note');
+    check('at 900px the note is back in the flow',
+      note.left < art.right - 50,
+      `column ends at ${Math.round(art.right)}, note starts at ${Math.round(note.left)}`);
+    check('nothing overflows sideways',
+      d.documentElement.scrollWidth <= 900 + 1,
+      `scrollWidth ${d.documentElement.scrollWidth}`);
+  }
+
+  heading('The toggle — a checkbox and :has(), no script');
+  {
+    const d = await frame(styled, 1200);
+    const bullet = d.querySelectorAll('.weid-legend li')[3];
+    // innerText, not textContent: textContent reports the text of hidden
+    // elements too, which would make the assertion below always pass.
+    const before = bullet.innerText;
+    d.querySelector('.weid-toggle').click();
+    check('underlines come off',
+      style(d, 'article > p .weid-verbatim', 'textDecorationLine') === 'none');
+    check('notes in the text hide',
+      style(d, 'article > p .weid-note', 'display') === 'none');
+    check('the label swaps to "Show marks"',
+      style(d, '.weid-lbl-on', 'display') === 'none' &&
+      style(d, '.weid-lbl-off', 'display') === 'inline');
+    // Regression: hiding notes used to blank the legend's fourth bullet label,
+    // leaving it reading ": the model's contribution, not mine."
+    check('the legend keeps its fourth bullet label',
+      bullet.innerText === before,
+      `was ${JSON.stringify(before)}, now ${JSON.stringify(bullet.innerText)}`);
+  }
+
+  heading('Dark theme');
+  {
+    const d = await frame(styled, 1200);
+    const read = () => style(d, '.weid-verbatim', 'textDecorationColor');
+    const base = read();
+    d.documentElement.classList.add('dark');
+    const byClass = read();
+    d.documentElement.classList.remove('dark');
+    d.documentElement.setAttribute('data-theme', 'dark');
+    const byAttr = read();
+    d.documentElement.removeAttribute('data-theme');
+    const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+      skip('.dark class changes the accent',
+        'your system is in dark mode, so the accent is already the dark one — run in light mode to check this');
+      skip('[data-theme="dark"] changes the accent', 'same reason');
+    } else {
+      check('.dark class changes the accent', byClass !== base, `${base} vs ${byClass}`);
+      check('[data-theme="dark"] changes the accent', byAttr !== base, `${base} vs ${byAttr}`);
+    }
+    // prefers-color-scheme cannot be forced from a page, so assert the other
+    // direction: whatever the system says now, the accent agrees with it.
+    const dark = 'rgb(94, 234, 212)', light = 'rgb(15, 118, 110)';
+    check(`the accent matches the system theme (currently ${prefersDark ? 'dark' : 'light'})`,
+      base === (prefersDark ? dark : light), `got ${base}`);
+  }
+
+  heading('Disclosure survives the stylesheet');
+  {
+    const d = await frame(bare, 1200);
+    const note = d.querySelector('article > p .weid-note');
+    check('the note is still in the document', !!note && note.textContent.trim().length > 10);
+    check('the note is still visible', !!note.offsetParent || style(d, 'article > p .weid-note', 'display') !== 'none');
+    check('marked passages are still readable text',
+      d.querySelector('.weid-verbatim').textContent.trim().length > 0);
+  }
+
+  heading('The convention\'s own rules');
+  {
+    const d = await frame(styled, 1200);
+    check('the document carries a disclosure attribute',
+      !!d.querySelector('[data-ai-disclosure], [ai-disclosure]'));
+    check('a legend is present', d.querySelectorAll('.weid-legend').length === 1);
+    check('the voice pill names its source',
+      d.querySelectorAll('.weid-voice .weid-voice-src').length === 1);
+    // SPEC §5: weid-verbatim MAY carry human-only; the other two MUST NOT
+    // carry a disclosure value, because the prose there is the model's.
+    check('no mark overstates its claim (SPEC §5)',
+      d.querySelectorAll('.weid-idea[data-ai-disclosure], .weid-idea[ai-disclosure], .weid-experience[data-ai-disclosure], .weid-experience[ai-disclosure]').length === 0);
+  }
+
+  heading('Not covered here');
+  skip('print layout', 'a page cannot emulate the print medium — run test.mjs, or print example.html to PDF');
+  skip('the demos themselves', 'over file:// a page cannot read another file:// document; these tests check weid.css against a fixture. test.mjs checks example.html and example.es.html directly');
+
+  const s = document.getElementById('summary');
+  s.className = failed ? 'fail' : 'pass';
+  s.textContent = `${passed} passed, ${failed} failed, ${skipped} skipped`;
+  document.title = `weid — ${failed ? failed + ' failing' : 'tests pass'}`;
+})();
+</script>
+
+</body>
+</html>

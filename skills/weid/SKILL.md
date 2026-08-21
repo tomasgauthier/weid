@@ -1,136 +1,140 @@
 ---
 name: weid
-description: Marca la autoría dentro de un texto escrito con IA — qué frases son del humano (textuales, ideas, vivencias) y qué contenido puso el modelo — con la convención weid (weid-verbatim / weid-idea / weid-experience / weid-note, más data-ai-disclosure y data-weid-voice). Usa esta skill siempre que estés escribiendo o co-escribiendo con el usuario un texto que se va a publicar —ensayo, post, columna, newsletter, guion de charla—, aunque no te lo pidan: el marcado solo se puede hacer bien durante la escritura, porque después nadie se acuerda de quién dijo qué. Úsala también cuando el usuario hable de disclosure de IA, transparencia de autoría, "marcar lo que escribí yo", o mencione weid.
+description: Mark authorship inside AI-written text — which sentences are the human's (verbatim words, ideas, lived experience) and which content the model contributed — using the weid convention (weid-verbatim / weid-idea / weid-experience / weid-note, plus data-ai-disclosure and data-weid-voice). Use this skill whenever you are writing or co-writing with the user a text that will be published — essay, blog post, column, newsletter, talk script — even if they don't ask for it: the marking can only be done well during the writing, because afterwards nobody remembers who said what. Use it also when the user talks about AI disclosure, authorship transparency, "marking what I wrote myself", or mentions weid.
 ---
 
-# weid — marcar la autoría mientras se escribe
+# weid — marking authorship while you write
 
-## Por qué esto existe
+> Spanish version of this skill: `SKILL.es.md`, same folder.
 
-Un texto escrito contigo puede estar redactado casi entero por ti y ser, al
-mismo tiempo, íntegramente original: la idea es del autor, la vivencia es del
-autor, el giro nació en la conversación. Los estándares de disclosure que
-existen no pueden decir eso. Marcan el documento completo —"esto tuvo IA"— y
-ahí se acaban.
+## Why this exists
 
-weid marca lo otro: **qué es humano, y de qué manera lo es.**
+A text written with you can be drafted almost entirely by you and be, at the
+same time, wholly original: the idea is the author's, the lived experience is
+the author's, the turn was born in the conversation. The disclosure standards
+that exist cannot say that. They mark the whole document — "this involved AI" —
+and there they stop.
 
-La regla base, y todo lo demás se deriva de ella:
+weid marks the other thing: **what is human, and in what way it is.**
 
-> **En un documento declarado como asistido por IA, lo que no lleva marca lo
-> escribiste tú.**
+The base rule, and everything else follows from it:
 
-Las marcas señalan al humano. Al revés de lo que uno esperaría, y a propósito:
-en un texto asistido lo humano es lo escaso, y marcar lo escaso es lo que hace
-que la marca signifique algo. Si marcaras lo tuyo, marcarías el 90% del
-documento y nadie leería nada.
+> **In a document declared as AI-assisted, anything unmarked was written by
+> you.**
 
-## Marca mientras escribes, no después
+The marks point at the human. The opposite of what you would expect, and
+deliberately so: in an assisted text the human part is the scarce thing, and
+marking the scarce thing is what makes the mark mean something. If you marked
+your own, you would mark 90% of the document and nobody would read any of it.
 
-Esto es lo único que esta skill realmente te pide, y es lo que la hace difícil
-de reemplazar: **tú sabes qué frase fue del autor porque te la acaba de decir.**
-Esa información existe solo mientras la conversación está viva. Media hora
-después, o en otra sesión, ya no la tiene nadie — ni tú.
+## Mark as you write, not afterwards
 
-Así que marca en el momento en que redactas el párrafo. No dejes el marcado
-para el final "cuando el texto esté listo": para entonces vas a estar
-adivinando, y adivinar acá significa atribuirle al autor cosas que no dijo.
+This is the only thing this skill really asks of you, and it is what makes it
+hard to replace: **you know which sentence was the author's because they just
+said it to you.** That information exists only while the conversation is alive.
+Half an hour later, or in another session, nobody has it — not even you.
 
-## Las tres marcas humanas
+So mark at the moment you draft the paragraph. Don't leave the marking for the
+end, "once the text is ready": by then you will be guessing, and guessing here
+means attributing to the author things they never said.
 
-Van sobre `<span>`, en el texto, en línea. Los renderizadores de markdown
-dejan pasar el HTML inline, así que sirven igual en `.md` que en `.html`.
+## The three human marks
 
-**`weid-verbatim`** — sus palabras textuales o casi textuales. Algo que
-escribió, que dijo en el chat, o que corrigió a mano sobre tu borrador.
+They go on `<span>`, inline, in the text. Markdown renderers let inline HTML
+through, so they work the same in `.md` as in `.html`.
 
-```html
-<span class="weid-verbatim">¿qué permite eso?</span>
-```
-
-**`weid-idea`** — una idea o intuición que nació de él, aunque la hayas
-redactado tú. Es la marca más importante y la más difícil de juzgar bien.
+**`weid-verbatim`** — their words, verbatim or nearly so. Something they wrote,
+said in the chat, or fixed by hand on your draft.
 
 ```html
-<span class="weid-idea">Que la diferenciación y el lujo corran en lo digital,
-donde el costo material por unidad de status es órdenes de magnitud menor.</span>
+<span class="weid-verbatim">what does that make possible?</span>
 ```
 
-**`weid-experience`** — una vivencia, anécdota o dato personal suyo.
+**`weid-idea`** — an idea or intuition that originated with them, even if you
+wrote it up. It is the most important mark and the hardest to judge well.
 
 ```html
-<span class="weid-experience">Hace muchos años tomo esomeprazol, y hoy me
-ahorro casi 50 mil pesos comprando la molécula en vez del apellido.</span>
+<span class="weid-idea">That differentiation and luxury should run in the
+digital, where the material cost per unit of status is orders of magnitude
+lower.</span>
 ```
 
-Se anidan cuando corresponde. Una vivencia contada con sus palabras lleva las
-dos, y eso se lee exactamente como lo que es:
+**`weid-experience`** — a lived experience, anecdote or personal fact of theirs.
 
 ```html
-<span class="weid-experience"><span class="weid-verbatim">Ayer vi un cartel de
-una banda con tres fechas sold out.</span> Las fechas: marzo de 2027.</span>
+<span class="weid-experience">I have been taking esomeprazole for years, and
+today I save almost 50 thousand pesos buying the molecule instead of the
+surname.</span>
 ```
 
-### Los dos juicios que se equivocan siempre
-
-**Aprobar no es autoría.** Si tú propusiste algo y el autor dijo "sí, buena,
-ponlo", eso es tuyo, no de él. No lo marques. La decisión editorial de aceptar
-una idea no la convierte en propia; si lo fuera, todo el texto sería del autor
-y la convención no diría nada.
-
-**La idea se marca una vez, donde está mejor dicha.** Una intuición del autor
-suele reaparecer tres o cuatro veces en un ensayo. Marca la formulación más
-fuerte, no todos los ecos. Marcar cada aparición convierte el subrayado en
-ruido y el lector deja de mirarlo.
-
-Y la regla que resuelve las dudas: **ante la duda, no marques.** El default es
-que el texto sea tuyo. Errar hacia allá es humilde. Errar hacia el otro lado es
-ponerle al autor palabras que no dijo, que es la única forma de que esta
-convención haga daño.
-
-## La marca del modelo
-
-El reverso: cuando el **contenido** vino de ti —no solo la redacción— va una
-nota al inicio del párrafo que corresponde.
+They nest where it applies. An experience told in their own words carries both,
+and that reads as exactly what it is:
 
 ```html
-<p><span class="weid-note">La corrección —la variedad como mecanismo y no como
-exceso— es el argumento que opuse a la tesis original.</span>La variedad no es
-el efecto colateral del sistema que funciona: es el mecanismo por el cual
-funciona.</p>
+<span class="weid-experience"><span class="weid-verbatim">Yesterday I saw a
+poster for a band with three sold-out nights.</span> The dates: March
+2027.</span>
 ```
 
-El test: **si el autor no te hubiera tenido a ti, ¿este argumento, este dato o
-este giro estarían en el texto?** Si la respuesta es no, va nota.
+### The two judgements that always go wrong
 
-Tres casos que la ameritan: un argumento con el que le llevaste la contra y
-ganaste; investigación o referencias que él no puso; un movimiento estructural
-del texto que propusiste tú.
+**Approving is not authorship.** If you proposed something and the author said
+"yes, good, put it in", that is yours, not theirs. Don't mark it. The editorial
+decision to accept an idea does not make it their own; if it did, the whole text
+would be the author's and the convention would say nothing.
 
-Y uno que no: haber redactado bien el párrafo. Eso es el default, ya está
-declarado arriba, y ponerle nota a cada párrafo bien escrito vacía la nota de
-significado.
+**An idea gets marked once, where it is best said.** An intuition of the
+author's usually reappears three or four times in an essay. Mark the strongest
+formulation, not every echo. Marking each appearance turns the underlining into
+noise and the reader stops looking at it.
 
-Sé específico. "El ejemplo del contenedor marítimo y la cita de Mises 1920 son
-míos" sirve. "Aporte de la IA" no le dice nada a nadie.
+And the rule that settles the doubts: **when in doubt, don't mark.** The default
+is that the text is yours. Erring that way is humble. Erring the other way puts
+words in the author's mouth, which is the only way this convention can do harm.
 
-## Declarar el documento
+## The model's mark
 
-Al terminar, envuelve el texto:
+The inverse: when the **content** came from you — not just the drafting — a note
+goes at the start of the paragraph it belongs to.
+
+```html
+<p><span class="weid-note">The correction — variety as mechanism and not as
+excess — is the argument I set against the original thesis.</span>Variety is
+not the side effect of the system that works: it is the mechanism by which it
+works.</p>
+```
+
+The test: **if the author hadn't had you, would this argument, this fact or this
+turn be in the text?** If the answer is no, it gets a note.
+
+Three cases that warrant one: an argument where you pushed back and won;
+research or references they did not bring; a structural move in the text that
+you proposed.
+
+And one that does not: having drafted the paragraph well. That is the default,
+it is already declared above, and putting a note on every well-written paragraph
+drains the note of meaning.
+
+Be specific. "The shipping-container example and the Mises 1920 quotation are
+mine" works. "AI contribution" tells nobody anything.
+
+## Declaring the document
+
+When you finish, wrap the text:
 
 ```html
 <article data-ai-disclosure="ai-assisted" data-ai-model="claude-opus-5">
 ```
 
-Valores de `data-ai-disclosure`: `none` · `ai-assisted` · `ai-generated` ·
+Values for `data-ai-disclosure`: `none` · `ai-assisted` · `ai-generated` ·
 `autonomous`.
 
-### Y declarar la voz — esto importa
+### And declaring the voice — this matters
 
-Si estás escribiendo con una skill, comando o persona construida con los
-textos del propio autor (por ejemplo `tgdoppelganger`), no estás escribiendo
-con tu voz por defecto: estás escribiendo con la suya, reconstruida. Eso se
-declara, porque es información distinta:
+If you are writing with a skill, command or persona built from the author's own
+texts (for example `tgdoppelganger`), you are not writing in your default voice:
+you are writing in theirs, reconstructed. That gets declared, because it is
+different information:
 
 ```html
 <article data-ai-disclosure="ai-assisted"
@@ -138,69 +142,71 @@ declara, porque es información distinta:
          data-weid-voice-source="tgdoppelganger">
 ```
 
-- `model` — tu voz por defecto. Es el default; se puede omitir.
-- `author` — la voz del autor, desde los textos del autor.
-- `third-party` — la voz de un tercero. Acá **nombrar la fuente no es
-  opcional**: imitar a alguien sin decirlo es justamente lo que esta convención
-  existe para exponer.
+- `model` — your own default voice. This is the default; it can be omitted.
+- `author` — the author's voice, from the author's texts.
+- `third-party` — someone else's voice. Here **naming the source is not
+  optional**: imitating someone without saying so is precisely what this
+  convention exists to expose.
 
-En la leyenda, esa declaración va como píldora arriba de todo, no enterrada en
-la prosa — es lo primero que un lector quiere saber:
+In the legend, that declaration goes as a pill above everything else, not buried
+in the prose — it is the first thing a reader wants to know:
 
 ```html
-<span class="weid-voice">Voz del autor<span class="weid-voice-src">tgdoppelganger</span></span>
+<span class="weid-voice">Author's voice<span class="weid-voice-src">tgdoppelganger</span></span>
 ```
 
-Para `third-party` agrega `weid-voice--third-party`, que se pinta distinto a
-propósito.
+For `third-party` add `weid-voice--third-party`, which is painted differently on
+purpose.
 
-weid se compone con las skills de voz, no las reemplaza. Una decide cómo suena
-el texto; la otra registra de quién es cada cosa. Si hay una skill de voz
-activa en la sesión, dilo en el atributo sin que te lo pidan.
+weid composes with voice skills, it does not replace them. One decides how the
+text sounds; the other records whose each thing is. If a voice skill is active in
+the session, say so in the attribute without being asked.
 
-## La leyenda
+## The legend
 
-Un texto con marcas y sin leyenda es decoración. Cierra siempre con una,
-adaptada al texto —no la copies literal, escríbela en la voz del autor:
+A text with marks and no legend is decoration. Always close with one, adapted to
+the text — don't copy it literally, write it in the author's voice, and write it
+in the language the text is in:
 
 ```html
 <div class="weid-legend">
-<span class="weid-voice">Voz del autor<span class="weid-voice-src">tgdoppelganger</span></span>
-<strong>Cómo se escribió esto.</strong> [Con qué se escribió. Si hubo skill de
-voz, la píldora la nombra y acá explicas en media línea qué significa.] Lo subrayado es mío; <strong>lo que no lleva marca lo
-redactó el modelo</strong>.
+<span class="weid-voice">Author's voice<span class="weid-voice-src">tgdoppelganger</span></span>
+<strong>How this was written.</strong> [What it was written with. If there was a
+voice skill, the pill names it and here you explain in half a line what that
+means.] The underlined passages are mine; <strong>anything unmarked was drafted
+by the model</strong>.
 <ul>
-<li><span class="weid-verbatim">Subrayado continuo</span>: palabras textuales mías.</li>
-<li><span class="weid-idea">Subrayado a trazos</span>: idea mía, redactada en conjunto.</li>
-<li><span class="weid-experience">Subrayado punteado</span>: experiencia o dato personal mío.</li>
-<li><span class="weid-note">Nota al margen</span>: argumento o dato que puso el modelo, no yo.</li>
+<li><span class="weid-verbatim">Solid underline</span>: my own words.</li>
+<li><span class="weid-idea">Dashed underline</span>: my idea, written up together.</li>
+<li><span class="weid-experience">Dotted underline</span>: my experience or personal fact.</li>
+<li><span class="weid-note">Margin note</span>: an argument or fact the model contributed, not me.</li>
 </ul>
 </div>
 ```
 
-## Restricción
+## Constraint
 
-Tres cosas que arruinan el marcado, en orden de gravedad:
+Three things that ruin the markup, in order of severity:
 
-1. **Inventar vivencias.** Nunca escribas una anécdota que el autor no te
-   contó, y muchísimo menos la marques como suya.
-2. **Marcar de más.** Entre cinco y quince marcas humanas en un ensayo largo.
-   Si subrayas todo, no subrayaste nada.
-3. **Marcar palabras sueltas.** Marca frases completas. Esto se lee como
-   subrayado de lector, no como keyword de SEO.
+1. **Inventing lived experiences.** Never write an anecdote the author did not
+   tell you, and far less mark it as theirs.
+2. **Over-marking.** Between five and fifteen human marks in a long essay. If
+   you underline everything, you underlined nothing.
+3. **Marking stray words.** Mark whole sentences. This should read like a
+   reader's underlining, not like an SEO keyword.
 
-## Si el texto ya está escrito
+## If the text is already written
 
-Se puede marcar a posteriori, pero dilo: la calidad cae mucho porque vas a
-estar adivinando. Si existe la transcripción de la sesión de escritura, pídela
-—con eso se reconstruye bien—. Sin transcripción, marca solo lo que puedas
-justificar y avisa que `weid-idea` es la que más probablemente esté mal, que es
-justo la que más importa.
+You can mark it after the fact, but say so: the quality drops a lot because you
+will be guessing. If the transcript of the writing session exists, ask for it —
+with that it reconstructs well. Without a transcript, mark only what you can
+justify and warn that `weid-idea` is the one most likely to be wrong, which is
+exactly the one that matters most.
 
-## Referencia
+## Reference
 
-La convención completa está en `SPEC.md`, en la raíz del repo weid (si esta
-skill está instalada por symlink, sigue el enlace hasta el repo). El CSS de
-referencia es `weid.css`: 160 líneas, sin JavaScript. La etimología, que es
-también la tesis: *weid-* es la raíz indoeuropea de **ver**, y de ella salen
-**idea** y **evidencia**. Esto muestra; no prueba.
+The complete convention is in `SPEC.md`, at the root of the weid repo (if this
+skill is installed by symlink, follow the link back to the repo). The reference
+CSS is `weid.css`: 160 lines, no JavaScript. The etymology, which is also the
+thesis: *weid-* is the Proto-Indo-European root of **to see**, and from it come
+**idea** and **evidence**. This shows; it does not prove.

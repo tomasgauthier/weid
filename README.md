@@ -158,8 +158,8 @@ work.
 | `SPEC.md` | The convention. It is the product. |
 | `weid.css` | Reference implementation, ~160 lines. |
 | `example.html` | Open it with a double click. It is the demo and it is the test. |
-| `PROMPT.md` | The portable prompt: works with any LLM, copy and paste. |
-| `skills/weid/` | The same instruction as a skill, for runtimes that support them. |
+| `PROMPT.md` | The portable prompt: works with any LLM, copy and paste. Spanish version in [`PROMPT.es.md`](PROMPT.es.md). |
+| `skills/weid/` | The same instruction as a skill, for runtimes that support them. `SKILL.md` in English, `SKILL.es.md` in Spanish. |
 
 No `package.json`, no build, no CI. You copy the CSS and it works: Astro,
 WordPress, Ghost, Hugo, Jekyll, a hand-written `.html`.

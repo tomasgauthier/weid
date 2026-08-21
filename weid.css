@@ -1,23 +1,23 @@
-/*! weid v0.1 — capa visible de disclosure de autoría · MIT
+/*! weid v0.1 — the visible layer of authorship disclosure · MIT
  *
- *  Regla base: en un documento declarado como asistido por IA, lo que NO
- *  lleva marca lo escribió la IA. Las marcas señalan lo humano, porque lo
- *  humano es lo escaso — y lo que hay que poder auditar.
+ *  Base rule: in a document declared as AI-assisted, anything NOT marked was
+ *  written by the AI. The marks point at the human, because the human part is
+ *  the scarce thing — and the thing worth being able to audit.
  *
- *  Uso: <link rel="stylesheet" href="weid.css">  y nada más.
- *  Sin build, sin JavaScript, sin dependencias.
+ *  Usage: <link rel="stylesheet" href="weid.css">  and nothing else.
+ *  No build, no JavaScript, no dependencies.
  */
 
 :root {
-  --weid-accent: #0f766e;                 /* marcas humanas */
-  --weid-note-color: #78716c;             /* notas de aporte de la IA */
+  --weid-accent: #0f766e;                 /* human marks */
+  --weid-note-color: #78716c;             /* AI-contribution notes */
   --weid-border: rgb(214 211 209 / 0.6);
   --weid-note-width: 172px;
   --weid-note-gap: 28px;
 }
 
-/* Oscuro por preferencia del sistema. `:not(.light)` deja que un sitio que
-   fuerza tema claro se salte esto agregando class="light" al <html>. */
+/* Dark by system preference. `:not(.light)` lets a site that forces a light
+   theme opt out by adding class="light" to <html>. */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     --weid-accent: #5eead4;
@@ -26,7 +26,7 @@
   }
 }
 
-/* Oscuro por clase (Tailwind, Astro, temas con data-theme). */
+/* Dark by class (Tailwind, Astro, themes using data-theme). */
 :root.dark,
 :root[data-theme="dark"] {
   --weid-accent: #5eead4;
@@ -34,9 +34,9 @@
   --weid-border: rgb(68 64 60 / 0.6);
 }
 
-/* ── 1. Marcas humanas ─────────────────────────────────────────────
-   Se distinguen por estilo de línea, no por color: legibles para quien
-   no distingue colores, y sobreviven a la impresión en blanco y negro. */
+/* ── 1. Human marks ────────────────────────────────────────────────
+   Distinguished by line style, not colour: legible to readers who do not
+   distinguish colours, and they survive monochrome printing. */
 
 .weid-verbatim,
 .weid-idea,
@@ -51,9 +51,9 @@
 .weid-idea       { text-decoration-style: dashed; }
 .weid-experience { text-decoration-style: dotted; }
 
-/* ── 2. Notas de aporte de la IA ───────────────────────────────────
-   Van dentro del párrafo que anotan. Sin CSS siguen ahí y siguen siendo
-   honestas: el disclosure no depende de la hoja de estilos. */
+/* ── 2. AI-contribution notes ──────────────────────────────────────
+   They live inside the paragraph they annotate. Strip the CSS and they are
+   still there and still honest: disclosure does not depend on a stylesheet. */
 
 .weid-note {
   display: block;
@@ -72,8 +72,8 @@
   color: var(--weid-accent);
 }
 
-/* Dentro de la leyenda, la nota es una muestra de sí misma, no una nota:
-   se queda en su viñeta en vez de irse flotando al margen. */
+/* Inside the legend, a note is a sample of itself, not a note: it stays in
+   its bullet instead of floating off to the margin. */
 .weid-legend .weid-note {
   display: inline;
   float: none;
@@ -85,7 +85,7 @@
   color: var(--weid-note-color);
 }
 
-/* Al margen cuando hay espacio. Bajo 1100px vuelve sola al flujo. */
+/* To the margin when there is room. Below 1100px it returns to the flow. */
 @media (min-width: 1100px) {
   .weid-legend .weid-note {
     display: inline;
@@ -106,7 +106,7 @@
     border-left: 0;
   }
 
-  /* Escape para layouts angostos o con overflow: hidden. */
+  /* Escape hatch for narrow layouts or ones with overflow: hidden. */
   .weid-notes-inline .weid-note {
     float: none;
     width: auto;
@@ -126,8 +126,8 @@
   }
 }
 
-/* ── 3. Leyenda ────────────────────────────────────────────────────
-   Obligatoria: sin ella las marcas son decoración, no disclosure. */
+/* ── 3. Legend ─────────────────────────────────────────────────────
+   Mandatory: without it the marks are decoration, not disclosure. */
 
 .weid-legend {
   font-size: 0.85rem;
@@ -145,14 +145,14 @@
 
 .weid-legend li { margin: 0.15rem 0; }
 
-/* ── 4. Píldora de voz ─────────────────────────────────────────────
-   La contraparte visible de data-weid-voice. Va arriba de la leyenda,
-   porque es lo primero que un lector quiere saber: ¿la voz de quién es
-   esta? */
+/* ── 4. Voice pill ─────────────────────────────────────────────────
+   The visible counterpart of data-weid-voice. It goes above the legend,
+   because it is the first thing a reader wants to know: whose voice is
+   this? */
 
 .weid-voice {
-  /* flex + fit-content, no inline-flex: la píldora toma línea propia sin
-     necesitar un contenedor extra alrededor. */
+  /* flex + fit-content, not inline-flex: the pill takes a line of its own
+     without needing an extra wrapper around it. */
   display: flex;
   width: fit-content;
   align-items: baseline;
@@ -178,8 +178,8 @@
   opacity: 0.6;
 }
 
-/* La voz de un tercero se ve distinta a propósito: es el caso que esta
-   convención existe para exponer, no uno más de la lista. */
+/* A third party's voice looks different on purpose: it is the case this
+   convention exists to expose, not one more entry in a list. */
 .weid-voice--third-party { color: #b45309; }
 
 @media (prefers-color-scheme: dark) {
@@ -188,8 +188,8 @@
 :root.dark .weid-voice--third-party,
 :root[data-theme="dark"] .weid-voice--third-party { color: #fbbf24; }
 
-/* ── 5. Toggle, sin JavaScript ─────────────────────────────────────
-   Un checkbox y :has(). El estado vive en el DOM, no en un script. */
+/* ── 5. Toggle, without JavaScript ─────────────────────────────────
+   A checkbox and :has(). The state lives in the DOM, not in a script. */
 
 .weid-toggle {
   position: absolute;

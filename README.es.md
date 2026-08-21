@@ -155,8 +155,8 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 | `SPEC.md` | La convención, en inglés. Es el producto. |
 | `weid.css` | Implementación de referencia, ~160 líneas. |
 | `example.html` | Ábrelo con doble click. Es la demo y es el test. |
-| `PROMPT.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. |
-| `skills/weid/` | La misma instrucción como skill, para runtimes que las soportan. |
+| `PROMPT.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. En español, [`PROMPT.es.md`](PROMPT.es.md). |
+| `skills/weid/` | La misma instrucción como skill, para runtimes que las soportan. `SKILL.md` en inglés, `SKILL.es.md` en español. |
 
 Sin `package.json`, sin build, sin CI. Copias el CSS y funciona: Astro,
 WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.

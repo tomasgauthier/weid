@@ -49,7 +49,7 @@ Pega esto al empezar a escribir, con cualquier modelo.
 > estás imitando la voz de un tercero, `data-weid-voice="third-party"` y
 > nómbralo: eso no es opcional.
 >
-> y agrega la leyenda de `example.html`, adaptada al texto y escrita en el
+> y agrega la leyenda de `example.es.html`, adaptada al texto y escrita en el
 > idioma en que está el texto.
 >
 > **Cinco reglas:**

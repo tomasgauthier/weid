@@ -92,7 +92,7 @@ aunque las palabras sean suyas. Un atributo opcional lo dice:
 imitar sin decirlo es justo lo que hay que declarar).
 
 Falta una sola cosa más, y es obligatoria: **la leyenda**. Sin ella las marcas
-son decoración. Está en `example.html`, lista para copiar.
+son decoración. Está en `example.es.html`, lista para copiar.
 
 ## Instalarlo en tu blog
 
@@ -154,7 +154,7 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 |---|---|
 | `SPEC.md` | La convención. Es el producto. En español, [`SPEC.es.md`](SPEC.es.md). |
 | `weid.css` | Implementación de referencia, ~160 líneas. |
-| `example.html` | Ábrelo con doble click. Es la demo y es el test. En inglés, `example.en.html`. |
+| `example.es.html` | Ábrelo con doble click. Es la demo y es el test. En inglés, `example.html`. |
 | `PROMPT.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. En español, [`PROMPT.es.md`](PROMPT.es.md). |
 | `skills/weid/` | La misma instrucción como skill, para runtimes que las soportan. `SKILL.md` en inglés, `SKILL.es.md` en español. |
 

@@ -50,7 +50,7 @@ Paste this when you start writing, with any model.
 > imitating a third party's voice, `data-weid-voice="third-party"` and name
 > them: that is not optional.
 >
-> and add the legend from `example.en.html`, adapted to the text and written in
+> and add the legend from `example.html`, adapted to the text and written in
 > the language the text is in.
 >
 > **Five rules:**

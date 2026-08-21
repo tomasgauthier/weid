@@ -155,6 +155,35 @@ clientes de correo y varios lectores de feeds. `class` sobre un `<span>`
 sobrevive a todos los sanitizadores de uso común. Ese es el piso que hace
 portable a la convención; no lo subas.
 
+### Mapeo de las marcas contra el vocabulario de documento
+
+`ai-disclosure` es un atributo global válido en cualquier elemento, y las reglas
+de cascada de la propuesta permiten que un hijo sobrescriba a su padre para
+marcar regiones finas. Una marca de weid podría entonces cargar también un valor
+de nivel documento, además de la clase. Solo una de las tres lo hace sin mentir:
+
+| Marca | Valor `ai-disclosure` más cercano |
+|---|---|
+| `weid-verbatim` | `human-only` — correcto: las palabras son del humano |
+| `weid-idea` | ninguno. `human-only` sería falso; la prosa es del modelo |
+| `weid-experience` | ninguno, por lo mismo |
+
+Para las dos últimas, el único valor verdadero es `ai-assisted`, que el elemento
+que las contiene ya declara y que esos spans heredan igual. Ahí el atributo no
+tiene nada que agregar.
+
+Esa asimetría es el argumento de que existan tres marcas. Un vocabulario de un
+solo eje puede decir *si* hubo IA en una frase; no puede decir *de qué manera
+contribuyó el humano* — y las frases donde esas dos cosas se separan, donde la
+idea es del autor y la prosa es del modelo, son las que el lector más quiere
+identificadas.
+
+Las implementaciones PUEDEN agregar `data-ai-disclosure="human-only"` a las
+marcas `weid-verbatim`, y NO DEBEN agregarlo a `weid-idea` ni a
+`weid-experience`: una marca que exagera su afirmación es peor que ninguna
+marca. La forma con prefijo es la desplegable — el atributo pelado no valida hoy
+y no sobrevive a KSES.
+
 ## 6. El lado de la IA
 
 La afirmación inversa — *este argumento vino del modelo* — la carga una nota

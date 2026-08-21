@@ -149,6 +149,34 @@ WordPress's KSES sanitizer, by most email clients, and by several feed readers.
 `class` on a `<span>` survives every sanitizer in common use. This is the floor
 that makes the convention portable; do not raise it.
 
+### Mapping the marks onto the document-level vocabulary
+
+`ai-disclosure` is a global attribute valid on any element, and the proposal's
+cascading rules let a child override its parent in order to mark fine-grained
+regions. A weid mark could therefore carry a document-level value as well as a
+class. Only one of the three does so truthfully:
+
+| Mark | Nearest `ai-disclosure` value |
+|---|---|
+| `weid-verbatim` | `human-only` — accurate: the words are the human's |
+| `weid-idea` | none. `human-only` would be false; the prose is the model's |
+| `weid-experience` | none, for the same reason |
+
+For the latter two the only truthful value is `ai-assisted`, which the enclosing
+element already declares and which those spans inherit anyway. The attribute has
+nothing to add there.
+
+That asymmetry is the argument for having three marks at all. A single-axis
+vocabulary can say *whether* AI was involved in a sentence; it cannot say *in
+what way the human contributed to it* — and the sentences where those two come
+apart, where the idea is the author's and the prose is the model's, are the ones
+a reader most wants identified.
+
+Implementations MAY add `data-ai-disclosure="human-only"` to `weid-verbatim`
+marks, and MUST NOT add it to `weid-idea` or `weid-experience`: a mark that
+overstates its claim is worse than no mark. The prefixed form is the deployable
+one — the bare attribute does not validate today and does not survive KSES.
+
 ## 6. The AI's side
 
 The inverse claim — *this argument came from the model* — is carried by a note

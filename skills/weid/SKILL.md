@@ -129,7 +129,9 @@ When you finish, wrap the text:
 Values for `data-ai-disclosure`: `human-only` · `ai-assisted` ·
 `ai-autonomous`. A text written with you is `ai-assisted` — that is the value
 weid's marks subdivide. Don't emit `ai-assisted-percent`: weid does not do
-percentages.
+percentages. The attribute goes on the wrapper only — never on an individual
+mark. Putting `human-only` on a `weid-idea` would claim no AI wrote that prose,
+which is false, since you wrote it.
 
 ### And declaring the voice — this matters
 

@@ -127,7 +127,9 @@ Al terminar, envuelve el texto:
 Valores de `data-ai-disclosure`: `human-only` · `ai-assisted` ·
 `ai-autonomous`. Un texto escrito contigo es `ai-assisted` — ese es el valor que
 subdividen las marcas de weid. No emitas `ai-assisted-percent`: weid no hace
-porcentajes.
+porcentajes. El atributo va solo en el contenedor, nunca en una marca suelta:
+poner `human-only` en un `weid-idea` afirmaría que ninguna IA redactó esa prosa,
+y es falso, porque la redactaste tú.
 
 ### Y declarar la voz — esto importa
 

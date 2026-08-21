@@ -187,9 +187,11 @@ it in `data-weid-voice`.
 
 weid **does not compete** with them, it complements them:
 
-- [`ai-disclosure`](https://github.com/dweekly/ai-content-disclosure) (W3C
-  Community Group, 2026) solves the document level. weid uses it as is, with a
-  `data-` prefix so it validates today.
+- [`ai-disclosure`](https://github.com/w3c-cg/ai-content-disclosure) (W3C AI
+  Content Disclosure Community Group) solves the document level. weid uses it as
+  is, with a `data-` prefix so it validates today. Its three values —
+  `human-only`, `ai-assisted`, `ai-autonomous` — are the baseline; weid
+  subdivides the middle one.
 - [IPTC digital source types](https://iptc.org/news/iptc-publishes-metadata-guidance-for-ai-generated-synthetic-media/)
   and C2PA cover images and cryptographic provenance.
 - [Article 50 of the EU AI Act](https://artificialintelligenceact.eu/transparency-rules-article-50/)

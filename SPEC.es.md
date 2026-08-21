@@ -17,12 +17,20 @@ existen no pueden expresar eso. Operan sobre el documento o sobre el bloque, y
 responden una sola pregunta: *¿hubo IA?*
 
 El atributo HTML propuesto
-[`ai-disclosure`](https://github.com/dweekly/ai-content-disclosure) (W3C
-Community Group, 2026) resuelve bien esa afirmación gruesa, y se alinea con los
+[`ai-disclosure`](https://github.com/w3c-cg/ai-content-disclosure) (W3C AI
+Content Disclosure Community Group) resuelve bien esa afirmación gruesa, y se
+alinea con los
 [digital source types de IPTC](https://iptc.org/news/iptc-publishes-metadata-guidance-for-ai-generated-synthetic-media/)
 y con C2PA. El Artículo 50 de la EU AI Act convierte el marcado legible por
 máquina en una obligación. Ninguno de ellos marca *qué frases aportó realmente
 el humano, y de qué manera*.
+
+El hueco se ensanchó cuando ese grupo fusionó sus valores "assisted" y
+"generated" en un solo `ai-assisted`, que hoy abarca desde la edición liviana de
+prosa humana hasta un texto redactado por IA que un humano revisó. La fusión es
+correcta a nivel documento —la frontera es impracticable de vigilar— pero deja
+un solo valor cargando el rango entero de la colaboración humano-máquina. weid
+es una forma de decir, dentro de ese rango, qué frases son cuáles.
 
 Eso es weid entero. Es un complemento de `ai-disclosure`, no un competidor: usa
 los dos.
@@ -51,16 +59,24 @@ Declara la línea base en el elemento raíz de la obra — el `<article>`, o
          data-ai-provider="Anthropic">
 ```
 
-`data-ai-disclosure` toma los cuatro valores de la propuesta `ai-disclosure`:
+`data-ai-disclosure` toma los valores de la propuesta `ai-disclosure`. Esta
+tabla sigue el draft del Community Group a agosto de 2026:
 
 | Valor | Significado |
 |---|---|
-| `none` | sin participación de IA |
-| `ai-assisted` | escrito por un humano, editado o pulido por IA |
-| `ai-generated` | generado por IA con prompting y revisión humana |
-| `autonomous` | generado por IA sin supervisión humana |
+| `human-only` | afirmación positiva de que no hubo IA |
+| `ai-assisted` | hubo IA, con autoría y/o revisión humana — desde la edición liviana de prosa humana hasta un texto redactado por IA que un humano pulió |
+| `ai-autonomous` | publicado sin intervención ni revisión humana |
 
-`data-ai-model` y `data-ai-provider` son opcionales.
+La ausencia del atributo significa *desconocido*, no `human-only`: no se ha
+afirmado nada. `human-only` es la afirmación positiva, y es el único valor al
+que weid no tiene nada que agregarle.
+
+weid aplica a los documentos `ai-assisted`. Ese es el valor que las marcas
+subdividen, y la razón de que existan.
+
+`data-ai-model` y `data-ai-provider` son opcionales, igual que
+`data-ai-prompt-url`. weid no usa `ai-assisted-percent` — ver §10.
 
 El prefijo `data-` es intencional. Es HTML válido hoy, sobrevive a los
 validadores, y calca el atributo propuesto uno a uno — así, un documento marcado
@@ -204,4 +220,7 @@ lo hace, antes que especificarlo mal.
   transparencia; no los descarga.
 - **No es un porcentaje.** Ni conteo de palabras ni "17% humano". La unidad es la
   afirmación, no la proporción — una sola frase marcada puede cargar la idea
-  entera de un ensayo.
+  entera de un ensayo. Por eso weid no emite el `ai-assisted-percent` opcional
+  del draft, y ahí está su desacuerdo de fondo con ese atributo: un porcentaje no
+  tiene numerador bien definido, y la pregunta real del lector —*cuáles* partes
+  son humanas— no es una cantidad.

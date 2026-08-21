@@ -124,8 +124,10 @@ Al terminar, envuelve el texto:
 <article data-ai-disclosure="ai-assisted" data-ai-model="claude-opus-5">
 ```
 
-Valores de `data-ai-disclosure`: `none` · `ai-assisted` · `ai-generated` ·
-`autonomous`.
+Valores de `data-ai-disclosure`: `human-only` · `ai-assisted` ·
+`ai-autonomous`. Un texto escrito contigo es `ai-assisted` — ese es el valor que
+subdividen las marcas de weid. No emitas `ai-assisted-percent`: weid no hace
+porcentajes.
 
 ### Y declarar la voz — esto importa
 

@@ -126,8 +126,10 @@ When you finish, wrap the text:
 <article data-ai-disclosure="ai-assisted" data-ai-model="claude-opus-5">
 ```
 
-Values for `data-ai-disclosure`: `none` · `ai-assisted` · `ai-generated` ·
-`autonomous`.
+Values for `data-ai-disclosure`: `human-only` · `ai-assisted` ·
+`ai-autonomous`. A text written with you is `ai-assisted` — that is the value
+weid's marks subdivide. Don't emit `ai-assisted-percent`: weid does not do
+percentages.
 
 ### And declaring the voice — this matters
 

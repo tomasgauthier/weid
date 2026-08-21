@@ -5,7 +5,9 @@ description: Mark authorship inside AI-written text — which sentences are the 
 
 # weid — marking authorship while you write
 
-> Spanish version of this skill: `SKILL.es.md`, same folder.
+> This is the English version. The Spanish one is the `weid-es` skill, in
+> `skills/weid-es/`. Install one or the other, not both: they do the same job
+> and would both activate.
 
 ## Why this exists
 

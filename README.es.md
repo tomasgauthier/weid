@@ -156,7 +156,8 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 | `weid.css` | Implementación de referencia, ~160 líneas. |
 | `example.es.html` | Ábrelo con doble click. Es la demo y es el test. En inglés, [`example.html`](example.html). |
 | `PROMPT.es.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. En inglés, [`PROMPT.md`](PROMPT.md). |
-| `skills/weid/` | La misma instrucción como skill, para runtimes que las soportan. `SKILL.md` en inglés, `SKILL.es.md` en español. |
+| `skills/weid-es/` | La misma instrucción como skill, para runtimes que las soportan. |
+| `skills/weid/` | La misma skill en inglés. Instala una o la otra. |
 
 Sin `package.json`, sin build, sin CI. Copias el CSS y funciona: Astro,
 WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.
@@ -170,8 +171,8 @@ viva y no después — ni el modelo la recupera.
 
 Por eso el productor viene en dos formas:
 
-- **`PROMPT.md`** — portable. Se copia y se pega en cualquier LLM.
-- **`skills/weid/`** — una skill, para runtimes que las soportan (Claude Code,
+- **`PROMPT.es.md`** — portable. Se copia y se pega en cualquier LLM.
+- **`skills/weid-es/`** — una skill, para runtimes que las soportan (Claude Code,
   entre otros). Se instala con un symlink a la carpeta de skills y se activa
   sola cuando estás escribiendo algo que se va a publicar. Es la forma fuerte:
   un prompt hay que acordarse de pegarlo.

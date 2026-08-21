@@ -1,11 +1,13 @@
 ---
-name: weid
+name: weid-es
 description: Marca la autoría dentro de un texto escrito con IA — qué frases son del humano (textuales, ideas, vivencias) y qué contenido puso el modelo — con la convención weid (weid-verbatim / weid-idea / weid-experience / weid-note, más data-ai-disclosure y data-weid-voice). Usa esta skill siempre que estés escribiendo o co-escribiendo con el usuario un texto que se va a publicar —ensayo, post, columna, newsletter, guion de charla—, aunque no te lo pidan: el marcado solo se puede hacer bien durante la escritura, porque después nadie se acuerda de quién dijo qué. Úsala también cuando el usuario hable de disclosure de IA, transparencia de autoría, "marcar lo que escribí yo", o mencione weid.
 ---
 
 # weid — marcar la autoría mientras se escribe
 
-> Versión en inglés de esta skill: `SKILL.md`, en esta misma carpeta.
+> Esta es la versión en español. La inglesa es la skill `weid`, en
+> `skills/weid/`. Instala una o la otra, no las dos: hacen lo mismo y se
+> activarían las dos a la vez.
 
 ## Por qué esto existe
 

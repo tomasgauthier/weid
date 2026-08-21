@@ -1,83 +1,86 @@
 # weid
 
-**Una convención para marcar el aporte humano dentro de un texto escrito con IA.**
-Tres clases de CSS, un atributo, ningún JavaScript.
+**English** · [Español](README.es.md)
 
-![Un hombre mirando un cartel de una banda con tres fechas sold out en una calle de Santiago](cover.jpeg)
+**A convention for marking human contribution inside AI-assisted text.**
+Three CSS classes, one attribute, no JavaScript.
 
-<sub>Portada del [ensayo que sirve de caso real](https://gauthier.cl/blog/la-estandarizacion-de-la-prosperidad) — el primer texto publicado con esta convención. Imagen generada con Nano Banana Pro, que es justamente lo que un caption debería decir.</sub>
+![A man looking at a poster for a band with three sold-out dates on a street in Santiago](cover.jpeg)
 
-> ***weid-*** — raíz indoeuropea que significa *ver*. De ella vienen **ver**,
-> **vidente**, **idea** y **evidencia**: literalmente, *lo que se ve con
-> claridad*. Es la familia entera de este proyecto en una sola palabra: hacer
-> visible qué ideas son humanas.
+<sub>Cover of the [essay that serves as the real-world case](https://gauthier.cl/blog/la-estandarizacion-de-la-prosperidad) (in Spanish) — the first text published with this convention. Image generated with Nano Banana Pro, which is exactly what a caption should say.</sub>
+
+> ***weid-*** — the Proto-Indo-European root meaning *to see*. From it come
+> **vision**, **idea** and **evidence**: literally, *what is plainly seen*. The
+> whole family of this project in a single word: making visible which ideas are
+> human.
 
 ---
 
-## Por qué
+## Why
 
-El debate sobre textos y IA se quedó pegado en una pregunta binaria: ¿lo
-escribió una persona o lo escribió una máquina? Para casi todo lo que se
-escribe hoy, esa pregunta ya no tiene respuesta, porque no es la pregunta.
+The debate about text and AI got stuck on a binary question: did a person write
+this, or did a machine? For almost everything written today, that question no
+longer has an answer, because it is not the question.
 
-Un ensayo puede estar redactado casi entero por un modelo y ser, al mismo
-tiempo, íntegramente original: la idea es de alguien, la vivencia es de
-alguien, el giro del argumento nació en una conversación entre los dos. Los
-estándares de disclosure que existen no pueden decir eso. Marcan el documento
-completo —"esto tuvo IA"— y ahí se acaban.
+An essay can be drafted almost entirely by a model and be, at the same time,
+wholly original: the idea is someone's, the lived experience is someone's, the
+turn in the argument was born in a conversation between the two. The disclosure
+standards that exist cannot say that. They mark the whole document — "this
+involved AI" — and there they stop.
 
-weid marca lo otro: **qué es humano, y de qué manera lo es.**
+weid marks the other thing: **what is human, and in what way it is.**
 
-La apuesta de fondo: pensar sigue siendo una actividad humana. Lo que cambió
-es que ahora está aumentada. Un disclosure honesto debiera poder mostrar eso
-en vez de esconderlo, y debiera poder mostrarlo *frase por frase*.
+The underlying bet: thinking is still a human activity. What changed is that it
+is now augmented. An honest disclosure ought to be able to show that instead of
+hiding it, and ought to be able to show it *sentence by sentence*.
 
-## La regla base
+## The base rule
 
-> **En un documento declarado como asistido por IA, lo que no lleva marca lo
-> escribió la IA.**
+> **In a document declared as AI-assisted, unmarked text was written by the
+> AI.**
 
-Las marcas señalan lo humano. Al revés de lo que uno esperaría, y a propósito:
-en un texto asistido lo humano es lo escaso, y marcar lo escaso es más barato
-—y más útil— que marcar todo lo demás.
+The marks point at the human. The opposite of what you would expect, and
+deliberately so: in an assisted text the human part is the scarce thing, and
+marking the scarce thing is cheaper — and more useful — than marking everything
+else.
 
-## Cómo se usa
+## How to use it
 
 ```html
 <link rel="stylesheet" href="weid.css">
 
 <article data-ai-disclosure="ai-assisted" data-ai-model="claude-opus-5">
-  <p><span class="weid-experience">Ayer vi un cartel de una banda con tres
-  fechas sold out.</span> Es decir, miles de personas ya pagaron por estar
-  juntas dentro de siete meses.</p>
+  <p><span class="weid-experience">Yesterday I saw a poster for a band with
+  three sold-out nights.</span> Which is to say, thousands of people have
+  already paid to be together seven months from now.</p>
 </article>
 ```
 
-Tres clases sobre `<span>`:
+Three classes on `<span>`:
 
-| Clase | Marca | Se ve como |
+| Class | Marks | Rendered as |
 |---|---|---|
-| `weid-verbatim` | palabras textuales de la persona | subrayado continuo |
-| `weid-idea` | idea suya, redactada en conjunto | subrayado a trazos |
-| `weid-experience` | vivencia, anécdota o dato personal suyo | subrayado punteado |
+| `weid-verbatim` | the person's own words | solid underline |
+| `weid-idea` | their idea, written up jointly | dashed underline |
+| `weid-experience` | their lived experience, anecdote or personal fact | dotted underline |
 
-Y una cuarta pieza para el lado contrario, el aporte del modelo:
+And a fourth piece for the other side, the model's contribution:
 
 ```html
-<p><span class="weid-note">El contraargumento acá lo puso el modelo.</span>
-La variedad no es el efecto colateral del sistema que funciona: es el
-mecanismo por el cual funciona.</p>
+<p><span class="weid-note">The counter-argument here was the model's.</span>
+Variety is not the side effect of the system that works: it is the mechanism
+by which it works.</p>
 ```
 
-La nota es texto normal dentro del párrafo. Con CSS se va al margen; sin CSS
-sigue ahí. Un disclosure que se cae cuando no carga la hoja de estilos no es
-un disclosure.
+The note is ordinary text inside the paragraph. With CSS it moves to the
+margin; without CSS it is still there. Disclosure that falls apart when the
+stylesheet fails to load is not disclosure.
 
-### ¿La voz de quién?
+### Whose voice?
 
-No es lo mismo el modelo con su voz por defecto que el modelo corriendo una
-skill que construiste con tus propios textos: ahí la voz es tuya reconstruida,
-aunque las palabras sean suyas. Un atributo opcional lo dice:
+A model in its default voice and a model running a skill you built from your own
+texts are not the same thing: there the voice is yours, reconstructed, even
+though the words are its. An optional attribute says so:
 
 ```html
 <article data-ai-disclosure="ai-assisted"
@@ -85,125 +88,129 @@ aunque las palabras sean suyas. Un atributo opcional lo dice:
          data-weid-voice-source="tgdoppelganger">
 ```
 
-`model` (el default, se omite) · `author` (tu voz, desde tus textos) ·
-`third-party` (la voz de un tercero — y ahí nombrarlo es obligatorio, porque
-imitar sin decirlo es justo lo que hay que declarar).
+`model` (the default, omit it) · `author` (your voice, from your texts) ·
+`third-party` (someone else's voice — and there, naming them is mandatory,
+because imitating without saying so is precisely what has to be declared).
 
-Falta una sola cosa más, y es obligatoria: **la leyenda**. Sin ella las marcas
-son decoración. Está en `example.html`, lista para copiar.
+One more thing is missing, and it is mandatory: **the legend**. Without it the
+marks are decoration. It is in `example.html`, ready to copy.
 
-## Instalarlo en tu blog
+## Installing it on your blog
 
-Son dos cosas, y ninguna es un plugin: **cargar el CSS una vez** y **que el
-marcado sobreviva a tu editor**.
+Two things, and neither is a plugin: **load the CSS once** and **make the markup
+survive your editor**.
 
-| Plataforma | Cómo cargas `weid.css` |
+| Platform | How you load `weid.css` |
 |---|---|
-| HTML a mano | `<link rel="stylesheet" href="weid.css">` |
-| WordPress | Apariencia → Personalizar → **CSS adicional**, y pegas el archivo. O `wp_enqueue_style()` en el tema hijo. |
-| Ghost | Configuración → **Code injection** → Site header, dentro de un `<style>`. |
-| Hugo / Jekyll / 11ty | Copias el archivo a `assets/` o `static/` y lo enlazas en el layout base. |
-| Astro | `import "../styles/weid.css"` **desde el `.astro`**, no con `@import` dentro de otro CSS (ver abajo). |
-| Substack, Medium, LinkedIn | No se puede: no dejan meter CSS. El marcado igual sobrevive como texto, pero no se ve. |
+| Hand-written HTML | `<link rel="stylesheet" href="weid.css">` |
+| WordPress | Appearance → Customize → **Additional CSS**, and paste the file. Or `wp_enqueue_style()` in the child theme. |
+| Ghost | Settings → **Code injection** → Site header, inside a `<style>`. |
+| Hugo / Jekyll / 11ty | Copy the file into `assets/` or `static/` and link it from the base layout. |
+| Astro | `import "../styles/weid.css"` **from the `.astro` file**, not with `@import` inside another CSS file (see below). |
+| Substack, Medium, LinkedIn | Not possible: they do not let you add CSS. The markup still survives as text, but it is invisible. |
 
-### La trampa de Astro (y de cualquier cosa con Vite)
+### The Astro trap (and anything else with Vite)
 
-Si metes `@import "./weid.css"` dentro de tu `global.css`, **Vite no vigila el
-archivo importado**: cachea el CSS ya procesado y sigue sirviendo la versión
-vieja hasta que reinicies el servidor. Se ve como si tus reglas nuevas no
-existieran. Impórtalo desde el componente `.astro` y desaparece el problema.
+If you put `@import "./weid.css"` inside your `global.css`, **Vite does not
+watch the imported file**: it caches the processed CSS and keeps serving the old
+version until you restart the server. It looks as if your new rules did not
+exist. Import it from the `.astro` component and the problem goes away.
 
-### El atributo a nivel documento
+### The document-level attribute
 
-`data-ai-disclosure` va en el elemento que envuelve la obra, y ese suele
-pintarlo la plantilla del tema, no el editor. Si no puedes o no quieres tocar la
-plantilla, envuelve el contenido dentro del propio post:
+`data-ai-disclosure` goes on the element that wraps the work, and that is
+usually painted by the theme's template, not by the editor. If you can't or
+don't want to touch the template, wrap the content inside the post itself:
 
 ```html
 <div data-ai-disclosure="ai-assisted" data-weid-voice="author">
-  … el texto …
+  … the text …
 </div>
 ```
 
-Funciona igual: el CSS no depende del atributo. El atributo es para las
-máquinas; las clases son para los ojos.
+It works the same: the CSS does not depend on the attribute. The attribute is
+for machines; the classes are for eyes.
 
-### WordPress: ¿hace falta un plugin?
+### WordPress: do you need a plugin?
 
-**No.** El marcado de weid sobrevive al sanitizador de WordPress tal cual:
+**No.** weid's markup survives WordPress's sanitizer as is:
 
-- KSES permite `class` y `data-*` como atributos globales sobre los elementos
-  que ya acepta, y `<span>` es uno de ellos. Así que las marcas y los atributos
-  de declaración pasan aunque el autor no tenga la capacidad `unfiltered_html`.
-- Esta es exactamente la razón por la que la convención usa `<span class="…">` y
-  no etiquetas propias: `<t-frase>` sí se lo come KSES.
+- KSES allows `class` and `data-*` as global attributes on the elements it
+  already accepts, and `<span>` is one of them. So the marks and the disclosure
+  attributes get through even if the author lacks the `unfiltered_html`
+  capability.
+- This is exactly why the convention uses `<span class="…">` and not custom
+  tags: `<t-sentence>` KSES does eat.
 
-Lo único incómodo es escribir las marcas: en Gutenberg hay que usar el **editor
-de código** (Opciones → Editor de código) o un bloque HTML personalizado, porque
-la barra de formato no trae un botón para esto.
+The only awkward part is writing the marks: in Gutenberg you have to use the
+**code editor** (Options → Code editor) or a custom HTML block, because the
+format bar has no button for this.
 
-Un plugin, entonces, solo ahorraría clicks: un botón de formato en la barra y
-una forma de inyectar el atributo en el `<article>` sin tocar el tema. No está
-en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo.
+A plugin, then, would only save clicks: a format button in the toolbar and a way
+to inject the attribute into the `<article>` without touching the theme. It is
+not in v0 and it won't be until someone asks for it — the CSS already does the
+work.
 
-## Qué hay acá
+## What's here
 
-| Archivo | Qué es |
+| File | What it is |
 |---|---|
-| `SPEC.md` | La convención, en inglés. Es el producto. |
-| `weid.css` | Implementación de referencia, ~160 líneas. |
-| `example.html` | Ábrelo con doble click. Es la demo y es el test. |
-| `PROMPT.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. |
-| `skills/weid/` | La misma instrucción como skill, para runtimes que las soportan. |
+| `SPEC.md` | The convention. It is the product. |
+| `weid.css` | Reference implementation, ~160 lines. |
+| `example.html` | Open it with a double click. It is the demo and it is the test. |
+| `PROMPT.md` | The portable prompt: works with any LLM, copy and paste. |
+| `skills/weid/` | The same instruction as a skill, for runtimes that support them. |
 
-Sin `package.json`, sin build, sin CI. Copias el CSS y funciona: Astro,
-WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.
+No `package.json`, no build, no CI. You copy the CSS and it works: Astro,
+WordPress, Ghost, Hugo, Jekyll, a hand-written `.html`.
 
-## El marcado no se escribe a mano
+## The markup is not written by hand
 
-Nadie va a etiquetar 3.000 palabras con la mano. La gracia es que el marcado
-salga **de la sesión de escritura misma**: el modelo sabe qué frase fue tuya
-porque la acabas de decir. Esa información existe mientras la conversación está
-viva y no después — ni el modelo la recupera.
+Nobody is going to tag 3,000 words by hand. The point is that the markup comes
+**out of the writing session itself**: the model knows which sentence was yours
+because you just said it. That information exists while the conversation is
+alive and not after — the model cannot recover it either.
 
-Por eso el productor viene en dos formas:
+So the producer comes in two forms:
 
-- **`PROMPT.md`** — portable. Se copia y se pega en cualquier LLM.
-- **`skills/weid/`** — una skill, para runtimes que las soportan (Claude Code,
-  entre otros). Se instala con un symlink a la carpeta de skills y se activa
-  sola cuando estás escribiendo algo que se va a publicar. Es la forma fuerte:
-  un prompt hay que acordarse de pegarlo.
+- **`PROMPT.md`** — portable. Copy and paste it into any LLM.
+- **`skills/weid/`** — a skill, for runtimes that support them (Claude Code,
+  among others). Install it with a symlink into the skills folder and it
+  activates on its own when you are writing something that will be published.
+  It is the strong form: a prompt is something you have to remember to paste.
 
-La skill **se compone con las skills de voz, no las reemplaza**: si estás
-escribiendo con una persona construida desde tus propios textos, weid lo
-detecta y lo declara en `data-weid-voice`.
+The skill **composes with voice skills, it does not replace them**: if you are
+writing with a persona built from your own texts, weid detects it and declares
+it in `data-weid-voice`.
 
-## Relación con los estándares que ya existen
+## Relationship to existing standards
 
-weid **no compite** con ellos, los complementa:
+weid **does not compete** with them, it complements them:
 
 - [`ai-disclosure`](https://github.com/dweekly/ai-content-disclosure) (W3C
-  Community Group, 2026) resuelve el nivel documento. weid lo usa tal cual,
-  con prefijo `data-` para que valide hoy.
+  Community Group, 2026) solves the document level. weid uses it as is, with a
+  `data-` prefix so it validates today.
 - [IPTC digital source types](https://iptc.org/news/iptc-publishes-metadata-guidance-for-ai-generated-synthetic-media/)
-  y C2PA cubren imagen y procedencia criptográfica.
-- El [Artículo 50 de la EU AI Act](https://artificialintelligenceact.eu/transparency-rules-article-50/)
-  obliga al marcado legible por máquina.
+  and C2PA cover images and cryptographic provenance.
+- [Article 50 of the EU AI Act](https://artificialintelligenceact.eu/transparency-rules-article-50/)
+  makes machine-readable marking an obligation.
 
-Ninguno marca la frase. Ese es el hueco.
+None of them marks the sentence. That is the gap.
 
-## Lo que weid no es
+## What weid is not
 
-- **No es un detector.** Registra lo que el autor declara. No lo verifica.
-- **No es una prueba.** Y la distinción está en el nombre: *weid* es evidencia
-  —lo que queda a la vista—, no prueba. Una marca muestra; no demuestra. Quien
-  quiera mentir con weid puede, igual que puede mentir en la firma de un
-  artículo. El disclosure honesto sirve a quien quiere ser honesto; el resto es
-  criptografía, y para eso está C2PA.
-- **No es un certificado de cumplimiento.** Ayuda; no descarga la obligación.
-- **No es un porcentaje.** Nada de "17% humano". La unidad es la afirmación,
-  no la proporción: una sola frase marcada puede cargar la idea entera.
+- **Not a detector.** It records what the author declares. It does not verify
+  it.
+- **Not proof.** And the distinction is in the name: *weid* is evidence — what
+  stays in plain sight — not proof. A mark shows; it does not demonstrate.
+  Anyone who wants to lie with weid can, just as they can lie in a byline.
+  Honest disclosure serves those who want to be honest; the rest is
+  cryptography, and that is what C2PA is for.
+- **Not a compliance certificate.** It helps; it does not discharge the
+  obligation.
+- **Not a percentage.** No "17% human". The unit is the claim, not the ratio: a
+  single marked sentence can carry the whole idea.
 
-## Licencia
+## License
 
-MIT. Úsalo, fórkalo, cámbiale el nombre.
+MIT. Use it, fork it, rename it.

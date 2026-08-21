@@ -154,13 +154,27 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 |---|---|
 | `SPEC.es.md` | La convención. Es el producto. La versión canónica es la inglesa, [`SPEC.md`](SPEC.md). |
 | `weid.css` | Implementación de referencia, ~160 líneas. |
-| `example.es.html` | Ábrelo con doble click. Es la demo y es el test. En inglés, [`example.html`](example.html). |
+| `example.es.html` | Ábrelo con doble click. Es la demo y el test visual. En inglés, [`example.html`](example.html). |
+| `test.mjs` | El mismo test, automatizado: renderiza las dos demos y verifica lo que el CSS promete. Opcional — ver abajo. |
 | `PROMPT.es.md` | El prompt portable: sirve con cualquier LLM, se copia y se pega. En inglés, [`PROMPT.md`](PROMPT.md). |
 | `skills/weid-es/` | La misma instrucción como skill, para runtimes que las soportan. |
 | `skills/weid/` | La misma skill en inglés. Instala una o la otra. |
 
 Sin `package.json`, sin build, sin CI. Copias el CSS y funciona: Astro,
 WordPress, Ghost, Hugo, Jekyll, un `.html` a mano.
+
+`test.mjs` es lo único con dependencia, y es dependencia de *testear* weid, no de
+usarlo — nada en la convención necesita Node. Para correrlo:
+
+```sh
+npm install playwright && npx playwright install chromium
+node test.mjs
+```
+
+Renderiza las dos demos en un browser de verdad y verifica las notas al margen
+sobre 1100px, la vuelta al flujo bajo ese ancho, los tres estilos de línea, el
+toggle sin JavaScript, los dos ganchos de tema oscuro, la impresión, y que las
+notas sigan legibles con la hoja de estilos bloqueada.
 
 ## El marcado no se escribe a mano
 

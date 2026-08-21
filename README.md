@@ -157,7 +157,7 @@ work.
 |---|---|
 | `SPEC.md` | The convention. It is the product. Spanish version in [`SPEC.es.md`](SPEC.es.md). |
 | `weid.css` | Reference implementation, ~160 lines. |
-| `example.html` | Open it with a double click. It is the demo and it is the test. Spanish version in `example.es.html`. |
+| `example.html` | Open it with a double click. It is the demo and it is the test. Spanish version in [`example.es.html`](example.es.html). |
 | `PROMPT.md` | The portable prompt: works with any LLM, copy and paste. Spanish version in [`PROMPT.es.md`](PROMPT.es.md). |
 | `skills/weid/` | The same instruction as a skill, for runtimes that support them. `SKILL.md` in English, `SKILL.es.md` in Spanish. |
 

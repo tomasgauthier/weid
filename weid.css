@@ -221,6 +221,11 @@
   text-decoration-line: none;
 }
 :has(.weid-toggle:checked) .weid-note   { display: none; }
+
+/* ...except the legend's sample, which is the label of its own bullet, not a
+   note. Without this the bullet loses its label and starts with a stray ":". */
+:has(.weid-toggle:checked) .weid-legend .weid-note { display: inline; }
+
 :has(.weid-toggle:checked) .weid-lbl-on  { display: none; }
 :has(.weid-toggle:checked) .weid-lbl-off { display: inline; }
 :has(.weid-toggle:checked) .weid-legend ul { opacity: 0.45; }

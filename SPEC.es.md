@@ -208,20 +208,26 @@ base y qué significa cada marca. Marcas sin leyenda son decoración.
 
 ```html
 <div class="weid-legend">
+  <span class="weid-voice">Voz del autor<span class="weid-voice-src">tgdoppelganger</span></span>
   <strong>Cómo se escribió esto.</strong> Escrito conversando con una IA.
   Lo subrayado es mío; lo que no lleva marca lo redactó el modelo.
   <ul>
     <li><span class="weid-verbatim">Continuo</span>: palabras textuales mías.</li>
     <li><span class="weid-idea">A trazos</span>: idea mía, redactada en conjunto.</li>
     <li><span class="weid-experience">Punteado</span>: algo que viví.</li>
+    <li><span class="weid-note">Nota al margen</span>: aporte del modelo, no mío.</li>
   </ul>
 </div>
 ```
 
+La leyenda cubre todas las marcas que el documento usa: una nota que la
+leyenda no explica es una afirmación sin explicar. La píldora de voz (§4) va
+sobre ella cuando el documento declara `data-weid-voice`.
+
 ## 8. Renderizado (no normativo)
 
-`weid.css`, en este repositorio, es la implementación de referencia: ~160
-líneas, sin JavaScript, sin build. Trae dos ganchos de tema
+`weid.css`, en este repositorio, es la implementación de referencia: un
+archivo, sin JavaScript, sin build. Trae dos ganchos de tema
 (`prefers-color-scheme` y una clase `.dark` / `[data-theme="dark"]`) y cinco
 custom properties para recolorear.
 

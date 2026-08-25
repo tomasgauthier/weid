@@ -201,19 +201,25 @@ and what each mark means. Marks without a legend are decoration.
 
 ```html
 <div class="weid-legend">
+  <span class="weid-voice">Author's voice<span class="weid-voice-src">tgdoppelganger</span></span>
   <strong>How this was written.</strong> Written in conversation with an AI.
   The underlined passages are mine; anything unmarked is the model's writing.
   <ul>
     <li><span class="weid-verbatim">Solid</span>: my own words.</li>
     <li><span class="weid-idea">Dashed</span>: my idea, written up together.</li>
     <li><span class="weid-experience">Dotted</span>: something I lived.</li>
+    <li><span class="weid-note">Margin note</span>: the model's contribution, not mine.</li>
   </ul>
 </div>
 ```
 
+The legend covers every mark the document uses: a note the legend does not
+explain is an unexplained claim. The voice pill (§4) goes above it when the
+document declares `data-weid-voice`.
+
 ## 8. Rendering (non-normative)
 
-`weid.css` in this repository is the reference implementation: ~160 lines, no
+`weid.css` in this repository is the reference implementation: one file, no
 JavaScript, no build step. It ships two theme hooks (`prefers-color-scheme` and
 a `.dark` / `[data-theme="dark"]` class) and five custom properties for
 recolouring.

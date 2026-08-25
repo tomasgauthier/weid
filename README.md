@@ -156,7 +156,7 @@ work.
 | File | What it is |
 |---|---|
 | `SPEC.md` | The convention. It is the product. Spanish version in [`SPEC.es.md`](SPEC.es.md). |
-| `weid.css` | Reference implementation, ~160 lines. |
+| `weid.css` | Reference implementation. One file, no JavaScript. |
 | `example.html` | Open it with a double click. It is the demo and the visual test. Spanish version in [`example.es.html`](example.es.html). |
 | `test.html` | The tests. Open it with a double click, same as the demo. No dependencies. |
 | `test.mjs` | The same tests plus print and the real demos, in a headless browser. Needs Playwright — see below. |

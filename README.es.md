@@ -153,7 +153,7 @@ en la v0 y no lo estará hasta que alguien lo pida — el CSS ya hace el trabajo
 | Archivo | Qué es |
 |---|---|
 | `SPEC.es.md` | La convención. Es el producto. La versión canónica es la inglesa, [`SPEC.md`](SPEC.md). |
-| `weid.css` | Implementación de referencia, ~160 líneas. |
+| `weid.css` | Implementación de referencia. Un archivo, sin JavaScript. |
 | `example.es.html` | Ábrelo con doble click. Es la demo y el test visual. En inglés, [`example.html`](example.html). |
 | `test.html` | Los tests. Ábrelo con doble click, igual que la demo. Sin dependencias. |
 | `test.mjs` | Los mismos tests más impresión y las demos reales, en un browser headless. Necesita Playwright — ver abajo. |

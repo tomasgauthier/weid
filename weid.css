@@ -167,9 +167,10 @@
   line-height: 1.7;
 }
 
+/* No opacity here: it would mix the colour into the background and drop the
+   contrast to 3.4:1. The lighter weight already sets the source apart. */
 .weid-voice-src {
   font-weight: 400;
-  opacity: 0.8;
 }
 
 .weid-voice-src::before {

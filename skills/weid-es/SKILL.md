@@ -183,6 +183,7 @@ redactó el modelo</strong>.
 <li><span class="weid-experience">Subrayado punteado</span>: experiencia o dato personal mío.</li>
 <li><span class="weid-note">Nota al margen</span>: argumento o dato que puso el modelo, no yo.</li>
 </ul>
+<a class="weid-credit" href="https://github.com/tomasgauthier/weid" rel="noopener">powered by <b>weid</b></a>
 </div>
 ```
 

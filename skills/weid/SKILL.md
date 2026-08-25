@@ -187,6 +187,7 @@ by the model</strong>.
 <li><span class="weid-experience">Dotted underline</span>: my experience or personal fact.</li>
 <li><span class="weid-note">Margin note</span>: an argument or fact the model contributed, not me.</li>
 </ul>
+<a class="weid-credit" href="https://github.com/tomasgauthier/weid" rel="noopener">powered by <b>weid</b></a>
 </div>
 ```
 

@@ -232,6 +232,10 @@ for (const file of FILES) {
     check('the document carries a disclosure attribute', await page.locator('[data-ai-disclosure], [ai-disclosure]').first().isVisible());
     check('the legend is present', (await page.locator('.weid-legend').count()) === 1);
     check('the voice pill names its source', (await page.locator('.weid-voice .weid-voice-src').count()) === 1);
+    check(
+      'the credit links back to the convention',
+      (await page.locator('.weid-credit').getAttribute('href')) === 'https://github.com/tomasgauthier/weid'
+    );
 
     // SPEC §5: a mark may carry human-only on weid-verbatim, and must not carry
     // a disclosure value on weid-idea or weid-experience.

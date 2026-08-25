@@ -217,11 +217,14 @@ base y qué significa cada marca. Marcas sin leyenda son decoración.
     <li><span class="weid-experience">Punteado</span>: algo que viví.</li>
     <li><span class="weid-note">Nota al margen</span>: aporte del modelo, no mío.</li>
   </ul>
+  <a class="weid-credit" href="https://github.com/tomasgauthier/weid" rel="noopener">powered by <b>weid</b></a>
 </div>
 ```
 
 La leyenda cubre todas las marcas que el documento usa: una nota que la
-leyenda no explica es una afirmación sin explicar. La píldora de voz (§4) va
+leyenda no explica es una afirmación sin explicar. El link de crédito (`weid-credit`) es
+OPCIONAL y no tiene peso normativo: apunta al lector hacia la convención, nada
+más. La píldora de voz (§4) va
 sobre ella cuando el documento declara `data-weid-voice`.
 
 ## 8. Renderizado (no normativo)

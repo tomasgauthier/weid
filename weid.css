@@ -136,6 +136,34 @@
 
 .weid-legend li { margin: 0.15rem 0; }
 
+/* The credit, optional: a link back to the convention at the foot of the
+   legend. The name wears the verbatim mark — weid signing with its own
+   underline. */
+
+.weid-credit {
+  display: block;
+  margin-top: 0.8rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--weid-border);
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--weid-note-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.weid-credit b {
+  font-weight: 500;
+  color: var(--weid-accent);
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: var(--weid-accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.weid-credit:hover { color: var(--weid-accent); }
+
 /* ── 4. Voice pill ─────────────────────────────────────────────────
    The visible counterpart of data-weid-voice. It goes above the legend,
    because it is the first thing a reader wants to know: whose voice is
@@ -202,7 +230,10 @@
   cursor: pointer;
 }
 
-.weid-toggle-label:has(.weid-toggle:focus-visible) {
+/* Both markups: the checkbox inside the label, or beside it with `for=`
+   (the only option where the editor will not let you nest). */
+.weid-toggle-label:has(.weid-toggle:focus-visible),
+.weid-toggle:focus-visible + .weid-toggle-label {
   outline: 2px solid var(--weid-accent);
   outline-offset: 2px;
 }

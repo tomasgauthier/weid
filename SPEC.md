@@ -210,11 +210,14 @@ and what each mark means. Marks without a legend are decoration.
     <li><span class="weid-experience">Dotted</span>: something I lived.</li>
     <li><span class="weid-note">Margin note</span>: the model's contribution, not mine.</li>
   </ul>
+  <a class="weid-credit" href="https://github.com/tomasgauthier/weid" rel="noopener">powered by <b>weid</b></a>
 </div>
 ```
 
 The legend covers every mark the document uses: a note the legend does not
-explain is an unexplained claim. The voice pill (§4) goes above it when the
+explain is an unexplained claim. The credit link (`weid-credit`) is OPTIONAL and
+carries no normative weight: it points a reader at the convention, nothing
+more. The voice pill (§4) goes above it when the
 document declares `data-weid-voice`.
 
 ## 8. Rendering (non-normative)

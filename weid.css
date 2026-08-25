@@ -210,7 +210,7 @@
   cursor: pointer;
 }
 
-.weid-toggle:focus-visible + .weid-toggle-label {
+.weid-toggle-label:has(.weid-toggle:focus-visible) {
   outline: 2px solid var(--weid-accent);
   outline-offset: 2px;
 }

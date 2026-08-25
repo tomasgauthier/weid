@@ -87,15 +87,6 @@
 
 /* To the margin when there is room. Below 1100px it returns to the flow. */
 @media (min-width: 1100px) {
-  .weid-legend .weid-note {
-    display: inline;
-    float: none;
-    width: auto;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
   .weid-note {
     float: right;
     clear: right;

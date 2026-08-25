@@ -111,6 +111,35 @@ for (const file of FILES) {
     await ctx.close();
   }
 
+  // ── Two posts on one page: a toggle only reaches its own ────────────────
+  // Regression: the toggle rules were not anchored, so `:has()` matched `body`
+  // and one post's toggle unmarked every other post on the page.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1400, height: 1000 } });
+    const page = await ctx.newPage();
+    await page.goto(url);
+    await page.evaluate(() => {
+      const a = document.querySelector('article');
+      a.after(a.cloneNode(true));
+    });
+    await page.locator('article').first().locator('.weid-toggle-label').click();
+
+    const second = page.locator('article').nth(1);
+    check(
+      'a second post keeps its underlines when the first is toggled',
+      (await second.locator('p .weid-verbatim').first().evaluate((el) => getComputedStyle(el).textDecorationLine)) === 'underline'
+    );
+    check(
+      'a second post keeps its notes when the first is toggled',
+      await second.locator('p .weid-note').first().isVisible()
+    );
+    check(
+      'a second post keeps its own label',
+      await second.locator('.weid-lbl-on').first().isVisible()
+    );
+    await ctx.close();
+  }
+
   // ── Narrow: notes return to the flow, nothing overflows ─────────────────
   {
     const ctx = await browser.newContext({ viewport: { width: 900, height: 1000 } });

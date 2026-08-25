@@ -63,12 +63,12 @@ no build, no server.</p>
 // which inherit this document's origin — so they stay readable from here even
 // over file://, where a normal iframe would not be.
 
-const BODY = `
-<article data-ai-disclosure="ai-assisted" data-ai-model="test"
-         data-weid-voice="author" data-weid-voice-source="fixture">
+// WORK is the body of the work; BODY wraps it in the <article> the demo uses.
+// SPEC §3 also allows the disclosure to sit on <body> when the whole page is
+// the work, so the same content is mounted both ways below.
+const WORK = `
   <div class="weid-legend">
-    <input type="checkbox" id="weid-off" class="weid-toggle">
-    <label for="weid-off" class="weid-toggle-label"><span class="weid-lbl-on">Hide marks</span><span class="weid-lbl-off">Show marks</span></label>
+    <label class="weid-toggle-label"><input type="checkbox" class="weid-toggle"><span class="weid-lbl-on">Hide marks</span><span class="weid-lbl-off">Show marks</span></label>
     <span class="weid-voice">Author's voice<span class="weid-voice-src">fixture</span></span>
     <strong>How this was written.</strong> Fixture legend.
     <ul>
@@ -84,12 +84,19 @@ const BODY = `
   say thousands of people had already paid to be somewhere together.</p>
   <p><span class="weid-idea">That differentiation should run in the digital,
   where the cost per unit of status is far lower.</span> A digital cosmetic is
-  a server plus a screen.</p>
-</article>`;
+  a server plus a screen.</p>`;
+
+const DISCLOSURE = `data-ai-disclosure="ai-assisted" data-ai-model="test"
+         data-weid-voice="author" data-weid-voice-source="fixture"`;
+const BODY = `<article ${DISCLOSURE}>${WORK}</article>`;
 
 const styled = `<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="weid.css"></head><body style="margin:0">${BODY}</body></html>`;
 const bare = `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">${BODY}</body></html>`;
+const twoPosts = `<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="weid.css"></head><body style="margin:0">${BODY}${BODY}</body></html>`;
+const bodyRoot = `<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="weid.css"></head><body style="margin:0" ${DISCLOSURE}>${WORK}</body></html>`;
 
 // ── Harness ────────────────────────────────────────────────────────────────
 let passed = 0, failed = 0, skipped = 0;
@@ -211,6 +218,39 @@ const style = (doc, sel, prop) => getComputedStyle(doc.querySelector(sel))[prop]
     check('the legend keeps its fourth bullet label',
       bullet.innerText === before,
       `was ${JSON.stringify(before)}, now ${JSON.stringify(bullet.innerText)}`);
+  }
+
+  heading('Two posts on one page — a toggle only reaches its own');
+  {
+    // Regression: the toggle rules were not anchored, so `:has()` matched
+    // `body` and one post's toggle unmarked every other post on the page.
+    const d = await frame(twoPosts, 1200);
+    const posts = d.querySelectorAll('article');
+    posts[0].querySelector('.weid-toggle').click();
+    const second = posts[1];
+    check('the second post keeps its underlines',
+      getComputedStyle(second.querySelector('p .weid-verbatim')).textDecorationLine === 'underline',
+      getComputedStyle(second.querySelector('p .weid-verbatim')).textDecorationLine);
+    check('the second post keeps its notes',
+      getComputedStyle(second.querySelector('p .weid-note')).display !== 'none');
+    check('the second post keeps its own label',
+      getComputedStyle(second.querySelector('.weid-lbl-on')).display !== 'none');
+    check('the first post is still toggled off',
+      getComputedStyle(posts[0].querySelector('p .weid-verbatim')).textDecorationLine === 'none');
+  }
+
+  heading('The whole page as the work — disclosure on <body> (SPEC §3)');
+  {
+    // The toggle is anchored to the element carrying the disclosure, not to
+    // <article>: when the page itself is the work, <body> is that element.
+    const d = await frame(bodyRoot, 1200);
+    check('marks are underlined before the toggle',
+      getComputedStyle(d.querySelector('body > p .weid-verbatim')).textDecorationLine === 'underline');
+    d.querySelector('.weid-toggle').click();
+    check('the toggle still reaches the marks',
+      getComputedStyle(d.querySelector('body > p .weid-verbatim')).textDecorationLine === 'none');
+    check('the toggle still reaches the notes',
+      getComputedStyle(d.querySelector('body > p .weid-note')).display === 'none');
   }
 
   heading('Dark theme');

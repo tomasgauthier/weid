@@ -217,15 +217,29 @@
 
 .weid-lbl-off { display: none; }
 
-:has(.weid-toggle:checked) :is(.weid-verbatim, .weid-idea, .weid-experience) {
+/* Anchored to the element that carries the disclosure — the same root §3 makes
+   mandatory, so this works whether the work is an <article> or the whole
+   <body>. A bare `:has()` would also match `html` and `body`, and on a page
+   with two posts one toggle would silently unmark the other. */
+
+:is([data-ai-disclosure], [ai-disclosure]):has(.weid-toggle:checked)
+  :is(.weid-verbatim, .weid-idea, .weid-experience) {
   text-decoration-line: none;
 }
-:has(.weid-toggle:checked) .weid-note   { display: none; }
+
+:is([data-ai-disclosure], [ai-disclosure]):has(.weid-toggle:checked)
+  .weid-note { display: none; }
 
 /* ...except the legend's sample, which is the label of its own bullet, not a
    note. Without this the bullet loses its label and starts with a stray ":". */
-:has(.weid-toggle:checked) .weid-legend .weid-note { display: inline; }
+:is([data-ai-disclosure], [ai-disclosure]):has(.weid-toggle:checked)
+  .weid-legend .weid-note { display: inline; }
 
-:has(.weid-toggle:checked) .weid-lbl-on  { display: none; }
-:has(.weid-toggle:checked) .weid-lbl-off { display: inline; }
-:has(.weid-toggle:checked) .weid-legend ul { opacity: 0.45; }
+:is([data-ai-disclosure], [ai-disclosure]):has(.weid-toggle:checked)
+  .weid-lbl-on  { display: none; }
+:is([data-ai-disclosure], [ai-disclosure]):has(.weid-toggle:checked)
+  .weid-lbl-off { display: inline; }
+
+/* The legend is not dimmed while the marks are off: at the opacity that read
+   as "inactive" it fell to 2.9:1, and the label already says which state it is
+   in. */

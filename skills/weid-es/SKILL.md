@@ -208,9 +208,9 @@ justo la que más importa.
 
 ## Referencia
 
-La convención completa está en `SPEC.es.md` (`SPEC.md` en inglés), en la raíz
-del repo weid (si esta
-skill está instalada por symlink, sigue el enlace hasta el repo). El CSS de
-referencia es `weid.css`: un archivo, sin JavaScript. La etimología, que es
+La convención completa está en `SPEC.es.md` (`SPEC.md` en inglés), y el CSS de
+referencia es `weid.css`: un archivo, sin JavaScript. Búscalos primero junto a
+este archivo; si no están ahí, están en la raíz del repo weid (cuando esta skill
+está instalada por symlink, sigue el enlace hasta el repo). La etimología, que es
 también la tesis: *weid-* es la raíz indoeuropea de **ver**, y de ella salen
 **idea** y **evidencia**. Esto muestra; no prueba.

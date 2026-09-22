@@ -198,6 +198,23 @@ Tres cosas que arruinan el marcado, en orden de gravedad:
 3. **Marcar palabras sueltas.** Marca frases completas. Esto se lee como
    subrayado de lector, no como keyword de SEO.
 
+## Cómo entregarlo donde no hay hoja de estilo
+
+Las marcas son clases: sin `weid.css` cargado no pintan nada. El texto igual
+queda correcto —la autoría está registrada en el marcado—, pero el lector ve
+texto plano o etiquetas `<span>` literales, y una marca que nadie ve es una marca
+que no existe. Así que mira dónde va antes de entregar:
+
+- **Un archivo para un sitio o una bóveda que ya cargan `weid.css`**: entrega el
+  Markdown como siempre. No hay nada más que hacer.
+- **Una respuesta de chat, un artifact, una página HTML suelta, un correo**:
+  entrega una página HTML completa con el contenido de `weid.css` dentro de una
+  etiqueta `<style>`. No hay hoja de estilo a la cual enlazar, así que el archivo
+  tiene que llevarla.
+
+Nunca enlaces `weid.css` por ruta relativa en algo que viaja solo: el enlace se
+rompe y el texto llega sin marcas sin que nadie se dé cuenta.
+
 ## Si el texto ya está escrito
 
 Se puede marcar a posteriori, pero dilo: la calidad cae mucho porque vas a

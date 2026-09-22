@@ -202,6 +202,22 @@ Three things that ruin the markup, in order of severity:
 3. **Marking stray words.** Mark whole sentences. This should read like a
    reader's underlining, not like an SEO keyword.
 
+## Delivering it where there is no stylesheet
+
+The marks are classes: without `weid.css` loaded, they paint nothing. The text is
+still correct — the authorship is recorded in the markup — but the reader sees
+either plain text or literal `<span>` tags, and a mark nobody sees is a mark that
+does not exist. So check where it is going before delivering:
+
+- **A file for a site or a vault that already loads `weid.css`** — deliver the
+  Markdown as usual. Nothing else to do.
+- **A chat reply, an artifact, an HTML page on its own, an email** — deliver a
+  complete HTML page with the contents of `weid.css` inside a `<style>` tag.
+  There is no stylesheet to link to, so the file has to carry it.
+
+Never link `weid.css` by a relative path in something that travels on its own:
+the link breaks and the text arrives unmarked without anyone noticing.
+
 ## If the text is already written
 
 You can mark it after the fact, but say so: the quality drops a lot because you
